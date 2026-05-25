@@ -54,12 +54,27 @@ design decision:
   (plate A) + 3/16" clearance on the stretcher end (plate B). Owner
   pushed back on initial 1/4" plates as overbuilt; the asymmetry was the
   resolution.
-- Flange plates are **1.5"W × 6"H tall narrow columns** aligned with leg
-  width — *not* 3"×3" squares. This was an explicit owner-driven choice
-  for aesthetics (no Y-axis protrusion) and gives ~2× the moment
-  resistance of a 3"×3" 4-bolt pattern for shelf loads.
+- Flange plates are **1.5"W tall narrow columns** aligned with leg width —
+  *not* 3"×3" squares. Owner-driven aesthetic + structural choice.
+- **Plate height varies by stretcher position:** top stretchers 7.5" tall
+  (tube + 2 bolts + knee brace + socket clearance); middle/bottom 5" tall
+  (tube centered + 1 bolt above + 1 below).
+- **2 bolts per joint, not 4.** Owner pointed out 4 was overbuilt; 2 bolts
+  cuts hardware count in half (24 total), simplifies assembly, resolves
+  bolt-tube collision on middle/bottom plates without needing extra height.
 - Bolts thread **directly into tapped plate A** — no separate nuts, no need
   to access back side. Bolt tip stops inside plate A.
+- **Do NOT tap through the leg wall.** Drill 1/2" relief holes through the
+  back wall of the leg behind each tapped plate-A hole, for bolt-tip
+  clearance. Tapping through 0.120" wall = useless thread engagement and
+  cross-threading risk.
+- **Knee braces are mitered** at both ends — outboard cut vertical (flush
+  to plate B), inboard cut horizontal (flush to stretcher underside).
+- **Plywood shelves drop onto 3/4"x3/4"x1/8" angle iron ledgers** welded to
+  the inboard top edge of front and back long stretchers (bottom and middle
+  shelf levels). Plywood top flush with steel tube top. No angle on
+  end-frame cross-tubes (3/4" ply spans the 17.25" depth without sag).
+  Gravity holds plywood down; no fasteners.
 - Cable X on back chosen over tube diagonal — aesthetic + lighter; tube
   remains an option.
 - Tube diagonals on end frames chosen over cables — A1 bedslinger loads

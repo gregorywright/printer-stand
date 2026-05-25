@@ -74,33 +74,51 @@ rack, *one* cable is in tension. Always.
 
 ## Knockdown joints
 
-Each long stretcher has a **1.5"-wide × 6"-tall** plate B welded
+Each long stretcher has a **1.5"-wide × {7.5" or 5"}** plate B welded
 perimeter-fillet to its open tube end. Each end-frame leg has matching plate
-A's welded to its inner X face at the three shelf heights. 4× 3/8"-16 bolts
-per joint, threading directly into the tapped plate A (no separate nuts).
+A's welded to its inner X face at the three shelf heights. **2× 3/8"-16 bolts
+per joint**, threading directly into the tapped plate A (no separate nuts).
 
 ### Plate orientation: tall narrow column, aligned with leg face
 
-The plates are **1.5" wide** (matching leg width) and **6" tall**, oriented
-vertically. They do *not* protrude in the Y (front-back) direction — plate
-edges are flush with the leg's front and back faces.
+The plates are **1.5" wide** (matching leg width). They do *not* protrude in
+the Y (front-back) direction — plate edges flush with the leg's front and
+back faces.
 
 Why this geometry over a square plate (e.g. 3"×3"):
 
 - **No Y-protrusion.** Aesthetic win — joint reads as a continuation of the
   leg rather than a flange sticking out into the airspace.
-- **Better moment resistance for shelf loads.** A vertical 4-bolt column
+- **Better moment resistance for shelf loads.** A vertical 2-bolt column
   resists the stretcher's tendency to droop at its far end via tension in
-  the top bolts and compression in the bottom bolts, with a 4.5" lever arm
-  between extreme bolts. A square 3"×3" 4-bolt pattern only has a 2.4"
-  lever arm. Roughly 2× the moment capacity for the same number of bolts.
-- **Same shear capacity** for racking loads — all 4 bolts share equally.
+  the upper bolt and compression in the lower bolt, with a 3.5" lever arm
+  between them. A square 3"×3" 4-bolt pattern only has a 2.4" lever arm.
 - **Accepts the loss of yaw resistance** (twisting the stretcher around its
   long axis) — that load case doesn't exist for this stand.
 
-For top stretchers, the plate is asymmetric vertically: top edge flush with
-leg top (35.25"), most of the plate hangs *below* the stretcher centerline.
-That lower portion serves as the weld surface for the knee brace.
+### Plate height differs by stretcher position
+
+- **Top stretchers: 7.5" tall.** This stretcher carries the most: stretcher
+  tube enters at top of plate, 2 bolts below the tube, and a knee brace
+  below the bolts. The plate has to be tall enough to fit all three with
+  socket-wrench clearance between the lower bolt and the brace (~1.5").
+  The plate's top edge is flush with the leg top (35.25") so it doesn't
+  protrude above.
+- **Middle and bottom stretchers: 5" tall.** No knee brace, just tube +
+  2 bolts straddling. Plate is centered on the stretcher centerline.
+  Bolts at ±1.75" from stretcher centerline (clearing the tube), 0.75"
+  margin to plate edge.
+
+This was the resolution to two problems the user spotted:
+1. The previous 6" plate had 4 bolts in a column, but 2 of them collided
+   with the stretcher tube's intersection of the plate.
+2. The lower bolt on the top stretcher had no socket-wrench clearance to
+   the knee brace.
+
+Going to **2 bolts** instead of 4 was the bigger insight: 4 bolts was
+overbuilt by ~50× for the loads this stand sees. 2 bolts cuts the tap
+work in half, halves the bolt count, and resolves the tube-collision
+without needing extra plate height for middle/bottom stretchers.
 
 ### Bolts thread directly into plate A
 
@@ -108,11 +126,28 @@ Plate A is **3/8" thick** with 3/8"-16 *tapped* holes — six threads of
 engagement, plenty stiff and strong. Plate B is 3/16" thick with *clearance*
 holes (~7/16"). Bolt enters from the stand interior, passes through plate B,
 threads into plate A. **Bolt tip stops inside plate A — never enters the
-leg.** No nut on the back side; nothing to access there (which is good,
-because there's nothing back there but the leg interior).
+leg.** No nut on the back side; nothing to access there.
 
 Tools needed: drill press, 5/16" tap drill, 3/8"-16 tap (~$10 from a hardware
 store). About 5 minutes of tap work per plate A.
+
+### Don't tap through the leg wall — drill a relief hole instead
+
+After plate A is welded to the leg, a tempting shortcut is to tap through
+both the plate AND the leg wall behind it. **Don't.**
+
+- Leg wall is 0.120" — only ~30% of one bolt diameter. Useless thread
+  engagement; can't carry meaningful load if plate A's threads ever back off.
+- Tapping through both layers (3/8" plate + 0.120" wall) risks cross-threading
+  or burr formation as the tap transitions between materials of different
+  hardness.
+- Plate A's existing thread engagement already exceeds bolt strength.
+  Adding unreliable wall threads contributes nothing.
+
+Instead, **drill a 1/2" clearance hole through the leg back wall** behind
+each tapped plate-A hole. The bolt tip pokes into the leg cavity through
+the relief hole if it happens to be 1/32" longer than calculated. Five
+seconds of drilling per hole.
 
 ### Why flange plates and not tube-in-tube sleeves
 
@@ -131,10 +166,12 @@ tube ID and sleeve OD.
 The top corner of each long-stretcher joint has a small tube knee brace
 welded as part of the stretcher assembly:
 
-- **Outboard end** welded to plate B's lower portion (well below the
-  stretcher tube)
-- **Inboard end** welded to the underside of the stretcher tube, ~5" inboard
-  from the joint
+- **Outboard end** mitered at the brace's slope angle so the cut face is
+  vertical, sitting flush against plate B's stand-interior face (well below
+  the bolts)
+- **Inboard end** mitered at (90° − slope) so the cut face is horizontal,
+  sitting flush against the underside of the stretcher tube (~5" inboard
+  from the joint)
 - Brace is part of the stretcher assembly — bolts on as one unit, knockdown
   property preserved
 
@@ -147,6 +184,30 @@ outside, brace closing the triangle.
 This was the resolution to the "knee brace can't connect to the leg without
 breaking knockdown" problem — by extending plate B downward beyond the
 stretcher, we get a weld surface that travels with the stretcher.
+
+## Plywood shelf support
+
+Plywood shelves drop onto **3/4"×3/4"×1/8" angle iron ledgers** welded along
+the inboard top edge of the front and back long stretchers (bottom and
+middle shelf levels only).
+
+- Vertical leg of the angle is welded to the inboard side wall of the
+  stretcher tube. Horizontal leg extends inward.
+- Top of horizontal leg is **flush with the top of the stretcher tube**, so
+  the plywood top sits flush with the steel tube top.
+- Plywood is sized 40.875" × 17.25" × 3/4" — 1/16" clearance per side
+  in X (between end-frame inner faces), and bridges Y from the inner edge
+  of the front angle to the inner edge of the back angle.
+- **No angle on the end-frame cross-tubes.** 3/4" plywood spans 17.25"
+  with no center support without meaningful sag, even under filament-spool
+  loading. The end-frame tubes just bound the rectangle.
+- **No fasteners required** — gravity holds the plywood down. Optional:
+  a screw at each plywood corner into a pre-drilled hole in the angle, if
+  shelves rattle.
+
+Knockdown is preserved: angle ledgers are welded to the long stretchers,
+so they travel with the stretcher when bolted on. Plywood lifts out for
+disassembly.
 
 ## Wood top mounting
 

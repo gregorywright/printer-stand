@@ -3,12 +3,15 @@
 // Units: inches
 //
 // Two welded end-frames + 6 bolted long stretchers + 4 top knee braces
-// + cable X across the back. Wood top floats on slotted screws.
+// + cable X across the back. Plywood shelves drop onto angle-iron ledgers.
+// Wood top floats on slotted screws.
 //
-// Flange-plate joint geometry: tall narrow column (1.5"W × 6"H), aligned
-// with leg face. Plate A (3/8" thick, tapped) on leg; plate B (3/16" thick,
-// clearance) on stretcher end. 4 bolts in a vertical column. No protrusion
-// outside the leg's footprint in Y.
+// Flange-plate joint geometry: tall narrow column, 1.5"W matching leg width.
+// Plate A (3/8" thick, tapped) on leg; plate B (3/16" thick, clearance) on
+// stretcher end. 2 bolts per joint, vertical column straddling the tube.
+//   Top stretchers:    plate 7.5"H, tube at top, 2 bolts below tube,
+//                      knee brace below the bolts.
+//   Middle/bottom:     plate 5.0"H, tube centered, 1 bolt above + 1 below.
 //
 // HOW TO VIEW:
 //   - Open this file in OpenSCAD (free at openscad.org)
@@ -35,16 +38,21 @@ TUBE        = 1.5;         // square tube outer dimension (1.5"x1.5"x0.120")
 // Flange plates: tall narrow columns, 1.5" wide (matches tube width).
 // Plate A on the leg is thicker (3/8") and tapped — bolt threads grab here.
 // Plate B on the stretcher end is thinner (3/16") with clearance holes.
-PLATE_W     = 1.5;
-PLATE_H     = 6;
-PLATE_A_THK = 3/8;
-PLATE_B_THK = 3/16;
+PLATE_W       = 1.5;
+PLATE_H_TOP   = 7.5;       // top-stretcher plates (tube + 2 bolts + knee brace)
+PLATE_H_OTHER = 5.0;       // middle and bottom plates (tube centered, 1 bolt above + 1 below)
+PLATE_A_THK   = 3/8;
+PLATE_B_THK   = 3/16;
 
 BOLT_DIA       = 3/8;
-N_BOLTS        = 4;
-BOLT_SPACING   = 1.5;
+N_BOLTS        = 2;        // 2 bolts per joint (down from 4) — overbuilt with 4
 BOLT_HEAD_DIA  = 0.625;
 BOLT_HEAD_THK  = 0.21;
+BOLT_OFFSET    = 1.75;     // bolt center distance from stretcher centerline
+
+// Angle iron ledgers (plywood shelves drop onto these)
+ANGLE_LEG     = 0.75;      // each leg of the angle is 3/4"
+ANGLE_THK     = 1/8;
 
 H_BOTTOM    = 5;           // top of bottom-shelf cross-tube, off floor
 H_MIDDLE    = 23.75;       // top of middle-shelf cross-tube — gives 10" upper-bay clear
@@ -53,8 +61,11 @@ LEVELER_HT   = 0.5;
 LEVELER_BASE = 2;
 
 CABLE_DIA    = 1/8;
-KNEE_INBOARD = 5;          // inboard reach of knee brace from joint
-KNEE_DROP    = 4.5;        // how far below stretcher centerline brace meets plate B
+// Knee brace geometry: brace welds to plate B's lower face (well below the bolts)
+// and to the underside of the stretcher tube, ~5" inboard of the joint.
+KNEE_INBOARD = 5;          // inboard reach of brace's stretcher-end weld
+KNEE_DROP    = 6;          // brace's plate-end Z below stretcher centerline
+                           // (clears 2 bolts at offset 1.75 + ~1.5" socket reach)
 
 SHELF_THK    = 0.75;
 
@@ -82,9 +93,10 @@ Z_TOP_STR = FRAME_TOP_Z - TUBE/2;            // 34.5
 Z_MID_STR = H_MIDDLE - TUBE/2;               // 23.0
 Z_BOT_STR = H_BOTTOM - TUBE/2;               // 4.25
 
-// Plate centerlines (Z). Top stretcher's plate is asymmetric — top flush with
-// leg top so the plate doesn't poke above. Other plates centered on stretcher.
-Z_TOP_PLATE = FRAME_TOP_Z - PLATE_H/2;       // 32.25 (top edge at 35.25)
+// Plate centerlines (Z). Top plate is asymmetric — top flush with leg top
+// (35.25") so plate hangs below the stretcher. Plate H = 7.5", so plate
+// center = 35.25 - 7.5/2 = 31.5. Other plates are centered on stretcher.
+Z_TOP_PLATE = FRAME_TOP_Z - PLATE_H_TOP/2;   // 31.5 (top edge at 35.25)
 Z_MID_PLATE = Z_MID_STR;                     // 23.0
 Z_BOT_PLATE = Z_BOT_STR;                     //  4.25
 
@@ -149,28 +161,27 @@ module z_tube(z_start, length, x_center, y_center) {
 //              Bolt enters from +X side (stand interior), threads in -X direction.
 //   side = -1: RIGHT joint, mirrored.
 
-module plate_a(leg_inner_x, y_center, z_center, side) {
+module plate_a(leg_inner_x, y_center, z_center, side, plate_h) {
     x0 = (side > 0) ? leg_inner_x : leg_inner_x - PLATE_A_THK;
     color(PLATE_C)
-        translate([x0, y_center - PLATE_W/2, z_center - PLATE_H/2])
-            cube([PLATE_A_THK, PLATE_W, PLATE_H]);
+        translate([x0, y_center - PLATE_W/2, z_center - plate_h/2])
+            cube([PLATE_A_THK, PLATE_W, plate_h]);
 }
 
-module plate_b(stretcher_end_x, y_center, z_center, side) {
+module plate_b(stretcher_end_x, y_center, z_center, side, plate_h) {
     x0 = (side > 0) ? stretcher_end_x - PLATE_B_THK : stretcher_end_x;
     color(PLATE_C)
-        translate([x0, y_center - PLATE_W/2, z_center - PLATE_H/2])
-            cube([PLATE_B_THK, PLATE_W, PLATE_H]);
+        translate([x0, y_center - PLATE_W/2, z_center - plate_h/2])
+            cube([PLATE_B_THK, PLATE_W, plate_h]);
 }
 
-module bolts_at_joint(stretcher_end_x, y_center, z_plate_center, side) {
-    // Bolt heads on plate B's outer (stand-interior) face.
+// 2 bolts per joint, straddling the stretcher tube vertically.
+// stretcher_z is the stretcher tube centerline; bolts sit ±BOLT_OFFSET from it.
+module bolts_at_joint(stretcher_end_x, y_center, stretcher_z, side) {
     bolt_head_x = stretcher_end_x;
-    z_top_bolt  = z_plate_center + (N_BOLTS - 1) * BOLT_SPACING / 2;
-    for (i = [0 : N_BOLTS - 1]) {
-        bz = z_top_bolt - i * BOLT_SPACING;
+    for (dz = [-BOLT_OFFSET, BOLT_OFFSET]) {
         color(BOLT_C)
-            translate([bolt_head_x, y_center, bz])
+            translate([bolt_head_x, y_center, stretcher_z + dz])
                 rotate([0, side*90, 0])
                     cylinder(d=BOLT_HEAD_DIA, h=BOLT_HEAD_THK);
     }
@@ -216,17 +227,15 @@ module end_frame(x0) {
     side          = (x0 < 0) ? +1 : -1;
     leg_inner_x   = (x0 < 0) ? LEG_INNER_X_LEFT : LEG_INNER_X_RIGHT;
     for (y = [FRONT_Y, BACK_Y]) {
-        plate_a(leg_inner_x, y, Z_BOT_PLATE, side);
-        plate_a(leg_inner_x, y, Z_MID_PLATE, side);
-        plate_a(leg_inner_x, y, Z_TOP_PLATE, side);
+        plate_a(leg_inner_x, y, Z_BOT_PLATE, side, PLATE_H_OTHER);
+        plate_a(leg_inner_x, y, Z_MID_PLATE, side, PLATE_H_OTHER);
+        plate_a(leg_inner_x, y, Z_TOP_PLATE, side, PLATE_H_TOP);
     }
 }
 
 // === LONG STRETCHER ==========================================================
-// Tube + plate B at each end. Bolts on as a unit.
-// `is_top` adjusts plate Z so top stretcher's plate sits flush with leg top
-// (most of plate B hangs below the stretcher tube — provides weld surface
-// for the knee brace).
+// Tube + plate B at each end + (top stretchers only) angle ledger for plywood.
+// Bolts on as a unit.
 
 module long_stretcher(y_center, z_str, is_top) {
     L = STRETCHER_END_RIGHT - STRETCHER_END_LEFT;
@@ -235,29 +244,111 @@ module long_stretcher(y_center, z_str, is_top) {
         translate([STRETCHER_END_LEFT, y_center - TUBE/2, z_str - TUBE/2])
             cube([L, TUBE, TUBE]);
 
-    z_plate = is_top ? Z_TOP_PLATE
+    z_plate = is_top    ? Z_TOP_PLATE
             : (z_str == Z_MID_STR ? Z_MID_PLATE : Z_BOT_PLATE);
+    plate_h = is_top ? PLATE_H_TOP : PLATE_H_OTHER;
 
-    // Plate B at LEFT end (side = +1, toward -X)
-    plate_b(STRETCHER_END_LEFT,  y_center, z_plate, +1);
-    bolts_at_joint(STRETCHER_END_LEFT,  y_center, z_plate, +1);
+    // Plate B at LEFT end (side = +1, plate body on -X side of stretcher end)
+    plate_b(STRETCHER_END_LEFT,  y_center, z_plate, +1, plate_h);
+    bolts_at_joint(STRETCHER_END_LEFT,  y_center, z_str, +1);
 
-    // Plate B at RIGHT end (side = -1, toward +X)
-    plate_b(STRETCHER_END_RIGHT, y_center, z_plate, -1);
-    bolts_at_joint(STRETCHER_END_RIGHT, y_center, z_plate, -1);
+    // Plate B at RIGHT end (side = -1, plate body on +X side of stretcher end)
+    plate_b(STRETCHER_END_RIGHT, y_center, z_plate, -1, plate_h);
+    bolts_at_joint(STRETCHER_END_RIGHT, y_center, z_str, -1);
 }
 
 // === KNEE BRACE ==============================================================
 // Diagonal that triangulates the corner formed by plate B's lower extension
-// and the underside of the top stretcher tube. Welded onto the stretcher
-// assembly (so it travels with the stretcher when bolted on).
+// and the underside of the top stretcher tube. The brace is welded onto the
+// stretcher assembly (so it travels with the stretcher when bolted on).
+//
+// In real fabrication: brace ends are mitered to seat flush against the
+// surfaces they weld to.
+//   Outboard end: cut at the brace's slope angle from horizontal so the end
+//                 face is VERTICAL — sits flat against plate B.
+//   Inboard end:  cut at (90° - slope) so the end face is HORIZONTAL — sits
+//                 flat against stretcher tube's underside.
+//
+// In the SCAD: rendered as a 4-sided polygon in the XZ plane, extruded TUBE
+// in Y. The polygon's corners match the real-world brace's outline, including
+// the mitered cuts.
 
 module knee_brace(end_x, y_center, side) {
-    // Outboard endpoint: on plate B's stand-interior face, KNEE_DROP below stretcher centerline
-    p_plate = [end_x, y_center, Z_TOP_STR - KNEE_DROP];
-    // Inboard endpoint: on stretcher tube's underside, KNEE_INBOARD inboard of joint
-    p_str   = [end_x + side * KNEE_INBOARD, y_center, Z_TOP_STR - TUBE/2];
-    bar_between(p_plate, p_str, TUBE, TUBE, STEEL);
+    // Outboard endpoint: at plate B's interior face, KNEE_DROP below stretcher CL
+    out_x  = end_x;
+    out_z  = Z_TOP_STR - KNEE_DROP;
+    // Inboard endpoint: at stretcher tube's underside, KNEE_INBOARD inboard
+    in_x   = end_x + side * KNEE_INBOARD;
+    in_z   = Z_TOP_STR - TUBE/2;
+
+    // Polygon corners (XZ plane). Brace's outboard edge is vertical (height TUBE),
+    // inboard edge is horizontal (width TUBE going outboard from in_x).
+    //   p1: outboard-bottom (at plate B, lower corner)
+    //   p2: inboard-lower (where brace's lower edge meets vertical line under in_x)
+    //   p3: inboard-upper (at stretcher underside, the corner against the joint)
+    //   p4: outboard-top (at plate B, upper corner)
+    p1 = [out_x,                         out_z];
+    p2 = [in_x - side * TUBE,            in_z - TUBE];
+    p3 = [in_x,                          in_z];
+    p4 = [out_x,                         out_z + TUBE];
+
+    pts = (side > 0) ? [p1, p2, p3, p4] : [p4, p3, p2, p1];  // wind correctly for each side
+
+    color(STEEL)
+        translate([0, y_center - TUBE/2, 0])
+            linear_extrude(height=TUBE)
+                polygon(pts);
+}
+
+// === ANGLE IRON LEDGER =======================================================
+// 3/4"x3/4"x1/8" angle, runs along the inboard top edge of a long stretcher.
+// Welded permanently to the stretcher tube — travels with it when bolted on.
+//
+// Cross section (looking down the long stretcher axis, front stretcher example):
+//
+//   stretcher tube                  plywood top, flush with tube top:
+//   .─────────.                  ──────────────────────────────────────
+//   │         │═══╗ ← horizontal angle leg, ANGLE_LEG (3/4") inward
+//   │         │   ║   thickness ANGLE_THK (1/8")
+//   │         │   ║
+//   │  TUBE   │   ║ ← vertical angle leg, also 3/4"x1/8", welded to tube
+//   │         │   ║
+//   │         │   ║
+//   │         │═══╝
+//   '─────────'
+//
+// The angle is rendered as an L-shape extruded along X.
+//
+// y_dir = +1 for FRONT stretcher (angle horizontal leg points BACKWARD, +Y),
+//         -1 for BACK  stretcher (angle horizontal leg points FORWARD,  -Y).
+
+module angle_ledger(y_center, z_str, y_dir) {
+    L = STRETCHER_END_RIGHT - STRETCHER_END_LEFT;
+
+    // Vertical leg: TUBE/2 inward of stretcher's inner Y face.
+    // Sits against the upper portion of the tube's inner side wall.
+    // Stretcher inner face (Y nearest stand center) is at y_center + y_dir*(-TUBE/2)
+    // since y_dir=+1 means front stretcher whose inner face is at y_center + TUBE/2... wait.
+    // FRONT_Y is negative; front stretcher's inner-toward-center face is at
+    // FRONT_Y + TUBE/2 (positive direction). For BACK stretcher, inner face
+    // is at BACK_Y - TUBE/2. We want angle_inner_y on the *interior* side.
+
+    inner_face_y = y_center + (-y_dir) * TUBE/2;  // Y of the tube's interior face
+
+    // Vertical leg: thin slab against inner face, top of leg flush with tube top
+    color(STEEL)
+        translate([STRETCHER_END_LEFT,
+                   inner_face_y + (y_dir > 0 ? 0 : -ANGLE_THK),
+                   z_str + TUBE/2 - ANGLE_LEG])
+            cube([L, ANGLE_THK, ANGLE_LEG]);
+
+    // Horizontal leg: lies on top of vertical leg, extends ANGLE_LEG inward
+    // top of horizontal leg flush with tube top.
+    color(STEEL)
+        translate([STRETCHER_END_LEFT,
+                   inner_face_y + (y_dir > 0 ? 0 : -ANGLE_LEG),
+                   z_str + TUBE/2 - ANGLE_THK])
+            cube([L, ANGLE_LEG, ANGLE_THK]);
 }
 
 // === CABLE X (back) ==========================================================
@@ -281,13 +372,25 @@ module wood_top() {
             cube([WOOD_LENGTH, WOOD_DEPTH, WOOD_THK]);
 }
 
+// Plywood shelf — drops onto the angle-iron ledgers on the front and back
+// stretchers. Top surface flush with stretcher tube tops.
+//   X: 1/16" clearance per side from end-frame inner X faces
+//   Y: extends from inboard edge of front angle to inboard edge of back angle
+//   Z: top flush with tube top at H_BOTTOM or H_MIDDLE
+
 module shelf(z_top) {
-    sx = STRETCHER_END_RIGHT - STRETCHER_END_LEFT;
-    sy_start = -FRAME_DEPTH/2 + TUBE;
-    sy_len   = FRAME_DEPTH - 2*TUBE;
+    SHELF_CLEAR = 1/16;
+    sx_start = LEG_INNER_X_LEFT  + SHELF_CLEAR;
+    sx_end   = LEG_INNER_X_RIGHT - SHELF_CLEAR;
+    // Y: angle's horizontal-leg inner edge.
+    // Front stretcher's tube inner face is at FRONT_Y + TUBE/2 = -9.375;
+    // angle's horizontal leg extends ANGLE_LEG inward from that, so inner
+    // edge is at FRONT_Y + TUBE/2 + ANGLE_LEG = -8.625. Back: +8.625.
+    sy_start = FRONT_Y + TUBE/2 + ANGLE_LEG;
+    sy_end   = BACK_Y  - TUBE/2 - ANGLE_LEG;
     color(SHELF)
-        translate([STRETCHER_END_LEFT, sy_start, z_top - SHELF_THK])
-            cube([sx, sy_len, SHELF_THK]);
+        translate([sx_start, sy_start, z_top - SHELF_THK])
+            cube([sx_end - sx_start, sy_end - sy_start, SHELF_THK]);
 }
 
 module floor_ref() {
@@ -306,6 +409,13 @@ for (y = [FRONT_Y, BACK_Y]) {
     long_stretcher(y, Z_TOP_STR, true);
     long_stretcher(y, Z_MID_STR, false);
     long_stretcher(y, Z_BOT_STR, false);
+}
+
+// Angle-iron ledgers — only on the bottom and middle stretchers (where the
+// plywood shelves drop in). Front stretcher: y_dir = +1; back: -1.
+for (z = [Z_MID_STR, Z_BOT_STR]) {
+    angle_ledger(FRONT_Y, z, +1);
+    angle_ledger(BACK_Y,  z, -1);
 }
 
 // 4 knee braces at top corners (one per top-stretcher end)
@@ -329,15 +439,22 @@ if (SHOW_FLOOR_REF) floor_ref();
 //   End-frame horizontals: 6 × 18.75"   of 1.5"×1.5"×0.120" tube
 //                            (FRAME_DEPTH - 2*TUBE = 21.75 - 3.0)
 //   End-frame diagonals:   2 × ~25.5"   (cut to fit, ~42.6° from horizontal)
-//   Long stretchers:       6 × 39.875"  (STRETCHER_END_RIGHT - LEFT)
-//   Knee braces:           4 × ~6.25"   (cut to fit)
-//   Plate A (tapped):     12 × 1.5"×6"×3/8"  (tapped 3/8"-16, 4 holes per plate)
-//   Plate B (clearance):  12 × 1.5"×6"×3/16" (drilled ~7/16" clearance)
-//   Bolts:                48 × 3/8"-16, ~1.0" long, hex head + flat washer
+//   Long stretchers:       6 × 39.875"  of 1.5"×1.5"×0.120" tube
+//   Knee braces:           4 × ~7"      of 1.5"×1.5"×0.120" tube (mitered both ends)
+//   Plate A (top, tapped):     4 × 1.5"×7.5"×3/8"  (tapped 3/8"-16, 2 holes)
+//   Plate B (top, clearance):  4 × 1.5"×7.5"×3/16" (drilled ~7/16", 2 holes)
+//   Plate A (mid+bot, tapped): 8 × 1.5"×5"×3/8"   (tapped 3/8"-16, 2 holes)
+//   Plate B (mid+bot, clear):  8 × 1.5"×5"×3/16"  (drilled ~7/16", 2 holes)
+//   Angle iron ledgers:    4 × 39.875" of 3/4"×3/4"×1/8" angle
+//   Bolts:                24 × 3/8"-16, ~1.0" long, hex head + flat washer
 //   Levelers:              4 × 1/2"-13 swivel-base, 2" base, ~1.5" stud
 //   Weld-in inserts:       4 × 1/2"-13 (one per leg bottom)
+//   Leg back-wall relief:  drill 1/2" hole through leg back wall behind each
+//                          tapped plate-A hole (24 holes total) for bolt-tip
+//                          clearance — DO NOT TAP through the tube wall.
 //   Cable:               ~12 ft of 1/8" stainless 7×19 aircraft cable
 //   Cable hardware:        4 swage eye terminations + 2 turnbuckles + 4 eye plates
 //   Wood top:             48"×25.75"×~1.75"  (your build)
-//   Shelves:               2 × ~39.875"×18.75" of 3/4" plywood (or hardwood)
+//   Plywood shelves:       2 × 40.875"×17.25" of 3/4" plywood
+//                            (drops onto angle ledgers; gravity holds it down)
 // =======================================================================

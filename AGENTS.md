@@ -50,12 +50,27 @@ design decision:
 
 - 1.5"×1.5"×0.120" wall tubing chosen over thinner stock — burn-through
   margin for flux-core, not strength.
-- 3/16" flange plates chosen over 1/4" — owner correctly pushed back on
-  overbuild.
+- Flange plates use **asymmetric thickness**: 3/8" tapped on the leg
+  (plate A) + 3/16" clearance on the stretcher end (plate B). Owner
+  pushed back on initial 1/4" plates as overbuilt; the asymmetry was the
+  resolution.
+- Flange plates are **1.5"W × 6"H tall narrow columns** aligned with leg
+  width — *not* 3"×3" squares. This was an explicit owner-driven choice
+  for aesthetics (no Y-axis protrusion) and gives ~2× the moment
+  resistance of a 3"×3" 4-bolt pattern for shelf loads.
+- Bolts thread **directly into tapped plate A** — no separate nuts, no need
+  to access back side. Bolt tip stops inside plate A.
 - Cable X on back chosen over tube diagonal — aesthetic + lighter; tube
   remains an option.
 - Tube diagonals on end frames chosen over cables — A1 bedslinger loads
   the end-frame plane heavily, cables would be marginal there.
+- End-frame diagonal in the **lower bay** (not upper). Geometry currently
+  ~42.6° (not strict 45°) — driven by useful shelf heights, not pure angle.
+- H_MIDDLE = 23.75" gives 10" upper-bay clearance and 17.25" lower-bay
+  clearance (fits 8" filament spools standing up).
+- Knee braces **kept** — welded between plate B's lower extension and the
+  underside of the stretcher tube, so they travel with the stretcher
+  assembly and preserve knockdown.
 - Flange-plate joints chosen over tube-in-tube sleeves — easier for a
   beginner welder, more forgiving on cut accuracy.
 - Levelers chosen over casters — rigidity priority. Caster conversion path

@@ -47,8 +47,9 @@ unless explicitly renegotiated. Soft design choices live in `DESIGN.md`.
 | Component | Spec |
 |---|---|
 | Frame tubing | 1.5" × 1.5" × 0.120" wall, A500 mild steel |
-| Flange plates | 3" × 3" × 3/16" mild steel |
-| Bolts | 3/8"-16 grade 5+, ~1.25" long, with flat washers + nylock nuts |
+| Flange plate A (leg side) | 1.5" × 6" × **3/8"** mild steel, tapped 3/8"-16 (4 holes) |
+| Flange plate B (stretcher end) | 1.5" × 6" × **3/16"** mild steel, drilled ~7/16" clearance (4 holes) |
+| Bolts | 3/8"-16 grade 5+, ~1.0" long, hex head with flat washer (no nuts — threads engage tapped plate A) |
 | Leveler studs | 1/2"-13 |
 | Leveler base | 2" diameter, swivel-base type |
 | Leveler insert | Weld-in threaded insert, 1/2"-13, ~3/4" engagement length |
@@ -63,28 +64,53 @@ unless explicitly renegotiated. Soft design choices live in `DESIGN.md`.
 | Element | Z (top of, off floor) |
 |---|---|
 | Bottom shelf | 5" |
-| Middle shelf | 17" |
+| Middle shelf | 23.75" |
 | Steel top frame | 35.25" |
 | Wood top surface | 37" |
+
+**Vertical clearances:**
+- Floor → bottom shelf: 5" (toe space)
+- Bottom shelf → middle shelf: 17.25" clear (fits 8" filament spools standing up with margin)
+- Middle shelf → underside of top frame: 10" clear
+
+**End-frame lower-bay diagonal:** 18.75" wide × 17.25" tall bay, diagonal length ~25.5", angle ~42.6° from horizontal.
 
 ## Joints
 
 - **Welded:** all corners and members within each end frame, including the
-  internal diagonal. Knee-brace-to-stretcher welds on the long stretchers.
-- **Bolted:** all 6 long stretchers attach to end frames via flange plates
-  (4 bolts per joint × 12 joints = 48 bolts total).
+  internal diagonal. Plate A welded flush to leg's inner X face. On long
+  stretchers: plate B welded to open tube end, knee brace welded to plate B
+  and stretcher tube.
+- **Bolted:** all 6 long stretchers attach to end frames via flange plate
+  pairs (4 bolts per joint × 12 joints = **48 bolts total**). Bolts thread
+  directly into tapped plate A — no separate nuts.
 - **Tensioned:** cable X on rear face only. Re-tension after first month of use.
+
+### Flange-plate joint geometry
+
+- Plates are **1.5" wide × 6" tall**, oriented vertically along the leg.
+- Plate width matches leg width — **plates do not protrude in the Y direction**
+  beyond the leg's footprint.
+- 4 bolts per joint, in a **vertical column** at 1.5" spacing.
+- For top stretchers: plate top edge is flush with leg top (35.25"), plate
+  extends 4.5" downward from stretcher centerline. The lower extension is the
+  weld surface for the knee brace.
+- For middle and bottom stretchers: plate is centered on stretcher centerline.
+- Bolt enters from stand interior, passes through plate B clearance hole,
+  threads into plate A tapped hole. Bolt tip stops inside plate A — never
+  enters the leg.
 
 ## Frame member count
 
-| Member | Qty | Length (approx.) | Wall |
+| Member | Qty | Length (approx.) | Notes |
 |---|---|---|---|
-| Legs | 4 | 34.75" | 0.120" |
-| End-frame horizontals (per shelf level + top, both end frames) | 6 | 18.75" | 0.120" |
-| End-frame diagonals (one per end frame, lower bay) | 2 | ~21.5" | 0.120" |
-| Long stretchers | 6 | ~40.25" between flange faces | 0.120" |
-| Top knee braces | 4 | ~8.5" | 0.120" |
-| Flange plates | 24 | 3"×3"×3/16" | — |
+| Legs | 4 | 34.75" | 1.5"×1.5"×0.120" tube |
+| End-frame horizontals (3 per end frame × 2 end frames) | 6 | 18.75" | 1.5"×1.5"×0.120" tube |
+| End-frame diagonals (one per end frame, lower bay) | 2 | ~25.5" | 1.5"×1.5"×0.120" tube, ~42.6° |
+| Long stretchers (tube length, end-to-end) | 6 | 39.875" | 1.5"×1.5"×0.120" tube |
+| Top knee braces | 4 | ~6.25" | 1.5"×1.5"×0.120" tube |
+| Plate A (tapped, leg side) | 12 | 1.5"×6"×3/8" | 4 tapped 3/8"-16 holes, vertical column |
+| Plate B (clearance, stretcher end) | 12 | 1.5"×6"×3/16" | 4 clearance ~7/16" holes, vertical column |
 
 ## Weight (estimated)
 

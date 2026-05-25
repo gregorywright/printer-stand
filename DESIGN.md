@@ -34,9 +34,13 @@ Alternatives considered and rejected:
 - Aesthetically, 1.5" tube is in the right scale range for a 48"-long piece
   of furniture; 1" reads spindly, 2" reads industrial-machinery.
 
-**3/16" plate for flanges** (not 1/4"). 1/4" was overkill — the plates see
-maybe 100–200 lb of bolt tension at worst-case racking, and 3/16" doesn't
-oil-can. 1/8" was rejected as too floppy.
+**Asymmetric flange plates: 3/8" tapped (plate A) + 3/16" clearance (plate B).**
+Plate A on the leg gets the threads — bolt threads engage directly, no
+separate nut needed (and no need to access the back side of the plate, which
+is welded to the leg). Plate B on the stretcher end is just transferring
+compression from the bolt head; 3/16" is plenty for that role. The asymmetry
+gives a much stiffer joint than two equal-thickness plates of the same total
+mass would.
 
 ## Bracing strategy
 
@@ -70,10 +74,45 @@ rack, *one* cable is in tension. Always.
 
 ## Knockdown joints
 
-Each long stretcher has a 3"×3"×3/16" flange plate welded perimeter-fillet
-on each end. Each end-frame leg has matching plates welded to its inner
-face at the three shelf heights (bottom, middle, top). 4× 3/8"-16 bolts per
-joint.
+Each long stretcher has a **1.5"-wide × 6"-tall** plate B welded
+perimeter-fillet to its open tube end. Each end-frame leg has matching plate
+A's welded to its inner X face at the three shelf heights. 4× 3/8"-16 bolts
+per joint, threading directly into the tapped plate A (no separate nuts).
+
+### Plate orientation: tall narrow column, aligned with leg face
+
+The plates are **1.5" wide** (matching leg width) and **6" tall**, oriented
+vertically. They do *not* protrude in the Y (front-back) direction — plate
+edges are flush with the leg's front and back faces.
+
+Why this geometry over a square plate (e.g. 3"×3"):
+
+- **No Y-protrusion.** Aesthetic win — joint reads as a continuation of the
+  leg rather than a flange sticking out into the airspace.
+- **Better moment resistance for shelf loads.** A vertical 4-bolt column
+  resists the stretcher's tendency to droop at its far end via tension in
+  the top bolts and compression in the bottom bolts, with a 4.5" lever arm
+  between extreme bolts. A square 3"×3" 4-bolt pattern only has a 2.4"
+  lever arm. Roughly 2× the moment capacity for the same number of bolts.
+- **Same shear capacity** for racking loads — all 4 bolts share equally.
+- **Accepts the loss of yaw resistance** (twisting the stretcher around its
+  long axis) — that load case doesn't exist for this stand.
+
+For top stretchers, the plate is asymmetric vertically: top edge flush with
+leg top (35.25"), most of the plate hangs *below* the stretcher centerline.
+That lower portion serves as the weld surface for the knee brace.
+
+### Bolts thread directly into plate A
+
+Plate A is **3/8" thick** with 3/8"-16 *tapped* holes — six threads of
+engagement, plenty stiff and strong. Plate B is 3/16" thick with *clearance*
+holes (~7/16"). Bolt enters from the stand interior, passes through plate B,
+threads into plate A. **Bolt tip stops inside plate A — never enters the
+leg.** No nut on the back side; nothing to access there (which is good,
+because there's nothing back there but the leg interior).
+
+Tools needed: drill press, 5/16" tap drill, 3/8"-16 tap (~$10 from a hardware
+store). About 5 minutes of tap work per plate A.
 
 ### Why flange plates and not tube-in-tube sleeves
 
@@ -86,6 +125,28 @@ Flange plates are forgiving:
 
 Internal sleeves are cleaner-looking but require very tight tolerances on
 tube ID and sleeve OD.
+
+## Knee braces
+
+The top corner of each long-stretcher joint has a small tube knee brace
+welded as part of the stretcher assembly:
+
+- **Outboard end** welded to plate B's lower portion (well below the
+  stretcher tube)
+- **Inboard end** welded to the underside of the stretcher tube, ~5" inboard
+  from the joint
+- Brace is part of the stretcher assembly — bolts on as one unit, knockdown
+  property preserved
+
+The braces are borderline structurally necessary given the tall-plate moment
+resistance, but they're a clean structural detail that visually reinforces
+the joint corner. From the side view, you see a small triangle in the
+upper-corner area: stretcher on top, plate B's lower extension on the
+outside, brace closing the triangle.
+
+This was the resolution to the "knee brace can't connect to the leg without
+breaking knockdown" problem — by extending plate B downward beyond the
+stretcher, we get a weld surface that travels with the stretcher.
 
 ## Wood top mounting
 
@@ -147,6 +208,23 @@ move) doesn't require touching the levelers.
 - **End-frame diagonals can mirror or match.** Mirrored = symmetric front
   view, more "furniture." Matched = directional, more "industrial cart."
   Owner's call.
+
+## Shelf heights
+
+| Shelf | Top-of-tube Z | Clear above |
+|---|---|---|
+| Bottom | 5" | 17.25" (fits 8" filament spools standing up + margin) |
+| Middle | 23.75" | 10" (small printers/accessories — printers actually live on top) |
+| Top frame | 35.25" | (1.75" of wood top) |
+
+The 17.25" clear space on the bottom shelf was driven by the 8"-diameter
+filament spool standing-up requirement. The 10" upper-bay clearance was an
+explicit choice to keep the middle shelf usefully accessible (filament,
+small parts, tools) while leaving a square-ish lower bay for the diagonal.
+
+The lower-bay diagonal at this geometry runs at ~42.6° from horizontal —
+close enough to 45° that the eye can't tell the difference, but the shelf
+heights remain useful rather than driven by a strict 45° geometry.
 
 ## Future modifications anticipated
 

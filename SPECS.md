@@ -47,10 +47,8 @@ unless explicitly renegotiated. Soft design choices live in `DESIGN.md`.
 | Component | Spec |
 |---|---|
 | Frame tubing | 1.5" × 1.5" × 0.120" wall, A500 mild steel |
-| Flange plate A (top stretchers, leg side) | 1.5" × **7.5"** × **3/8"** mild steel, tapped 3/8"-16 (2 holes) |
-| Flange plate B (top stretchers, stretcher end) | 1.5" × **7.5"** × **3/16"** mild steel, drilled ~7/16" clearance (2 holes) |
-| Flange plate A (middle/bottom, leg side) | 1.5" × **5"** × **3/8"** mild steel, tapped 3/8"-16 (2 holes) |
-| Flange plate B (middle/bottom, stretcher end) | 1.5" × **5"** × **3/16"** mild steel, drilled ~7/16" clearance (2 holes) |
+| Flange plate A (leg side) | 1.5" × **5"** × **3/8"** mild steel, tapped 3/8"-16 (2 holes) |
+| Flange plate B (stretcher end) | 1.5" × **5"** × **3/16"** mild steel, drilled ~7/16" clearance (2 holes) |
 | Angle iron ledgers (plywood support) | 3/4" × 3/4" × 1/8" mild angle, runs along inboard top edge of front and back stretchers at the two shelf levels |
 | Bolts | 3/8"-16 grade 5+, ~1.0" long, hex head with flat washer (no nuts — threads engage tapped plate A) |
 | Leveler studs | 1/2"-13 |
@@ -82,8 +80,7 @@ unless explicitly renegotiated. Soft design choices live in `DESIGN.md`.
 
 - **Welded:** all corners and members within each end frame, including the
   internal diagonal. Plate A welded flush to leg's inner X face. On long
-  stretchers: plate B welded to open tube end, knee brace welded to plate B
-  (lower portion) and stretcher tube (underside). Angle iron ledgers welded
+  stretchers: plate B welded to open tube end. Angle iron ledgers welded
   along the inboard top edge of bottom and middle stretchers.
 - **Bolted:** all 6 long stretchers attach to end frames via flange plate
   pairs (**2 bolts per joint × 12 joints = 24 bolts total**). Bolts thread
@@ -94,19 +91,17 @@ unless explicitly renegotiated. Soft design choices live in `DESIGN.md`.
 
 ### Flange-plate joint geometry
 
-- Plates are **1.5" wide** (matching leg width — no Y-direction protrusion).
-- **Plate height differs by stretcher position:**
-  - **Top stretchers: 7.5" tall.** Plate top flush with leg top (35.25"),
-    extends 7.5" downward to 27.75". Stretcher tube enters at top of plate
-    (top 1.5" of plate). 2 bolts in a vertical column below the tube,
-    clearing the tube intersection. Knee brace lives at the bottom of the
-    plate, below the lower bolt with ~1.5" socket-wrench clearance.
-  - **Middle and bottom stretchers: 5" tall.** Plate centered on stretcher
-    centerline. Stretcher tube enters middle of plate (middle 1.5"). 1 bolt
-    above the tube and 1 below, each at ±1.75" from stretcher centerline,
-    with 0.75" margin to plate edge.
-- 2 bolts per joint, 3.5" apart (vertical column), straddling the stretcher
-  tube where applicable.
+- Plates are **1.5" wide × 5" tall**, oriented vertically (no Y-direction
+  protrusion — plate width matches leg width).
+- **All 12 joints use identical plate dimensions.**
+- **Top stretchers:** plate top flush with leg top (35.25"), so plate
+  extends from 35.25" down to 30.25". Stretcher tube enters at top of
+  plate (top 1.5"). Both bolts sit *below* the tube — 0.75" below tube
+  bottom and 1.5" further below.
+- **Middle and bottom stretchers:** plate centered on stretcher centerline.
+  Tube enters middle of plate. 1 bolt above tube and 1 below, each at
+  ±1.75" from stretcher centerline, 0.75" margin to plate edge.
+- 2 bolts per joint × 12 joints = 24 bolts total.
 - Bolt enters from stand interior, passes through plate B clearance hole,
   threads into plate A tapped hole. **Bolt tip stops inside plate A — never
   enters the leg.**
@@ -145,12 +140,9 @@ keeps the joint geometry forgiving to bolt-length variation.
 | End-frame horizontals (3 per end frame × 2 end frames) | 6 | 18.75" | 1.5"×1.5"×0.120" tube |
 | End-frame diagonals (one per end frame, lower bay) | 2 | ~25.5" | 1.5"×1.5"×0.120" tube, ~42.6° |
 | Long stretchers (tube length, end-to-end) | 6 | 39.875" | 1.5"×1.5"×0.120" tube |
-| Top knee braces | 4 | ~7" | 1.5"×1.5"×0.120" tube, mitered both ends |
 | Angle iron ledgers | 4 | 39.875" | 3/4"×3/4"×1/8" angle |
-| Plate A — top (tapped, leg side) | 4 | 1.5"×7.5"×3/8" | 2 tapped 3/8"-16 holes |
-| Plate B — top (clearance, stretcher end) | 4 | 1.5"×7.5"×3/16" | 2 clearance ~7/16" holes |
-| Plate A — mid/bot (tapped, leg side) | 8 | 1.5"×5"×3/8" | 2 tapped 3/8"-16 holes |
-| Plate B — mid/bot (clearance, stretcher end) | 8 | 1.5"×5"×3/16" | 2 clearance ~7/16" holes |
+| Plate A (tapped, leg side) | 12 | 1.5"×5"×3/8" | 2 tapped 3/8"-16 holes |
+| Plate B (clearance, stretcher end) | 12 | 1.5"×5"×3/16" | 2 clearance ~7/16" holes |
 | Bolts | 24 | 3/8"-16 × 1" | hex head + flat washer |
 
 ## Weight (estimated)

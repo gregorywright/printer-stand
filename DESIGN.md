@@ -44,7 +44,7 @@ mass would.
 
 ## Bracing strategy
 
-The stand uses **four bracing elements**, sized to where loads actually go:
+The stand uses **three bracing elements**, sized to where loads actually go:
 
 1. **Internal diagonal in each end frame** (welded tube). The end frames
    are the high-stress planes — this is where the A1's bed-slinging
@@ -55,11 +55,16 @@ The stand uses **four bracing elements**, sized to where loads actually go:
    Cables are sufficient and look cleaner than a tube X. They're also
    the hybrid material moment — tube where it's working hardest, cable
    where it's mostly insurance.
-3. **Top knee braces (4)** at the front and rear top corners. These resist
-   the printer's reaction force at the very top of the stand, where flex
-   shows up as visible wobble.
-4. **Welded rectangular corners** on the end frames act like rigid moment
+3. **Welded rectangular corners** on the end frames act like rigid moment
    connections — almost as stiff as a triangle in their own plane.
+
+(Top knee braces were considered and rejected. Structurally they did
+almost nothing given the welded rectangular corners + end-frame diagonals
++ cable X + 2-bolt joint moment resistance. The 1.5" lever arm between
+top-joint bolts already gives ~50:1 safety margin against worst-case
+front-to-back rocking — the brace's marginal stiffness contribution
+isn't worth the extra welds, mitered cuts, or the visual clutter at the
+top corners.)
 
 The **front face is intentionally unbraced** — the printer lives there.
 Open ends and open back (apart from the cable X) are intentional for cable
@@ -96,29 +101,25 @@ Why this geometry over a square plate (e.g. 3"×3"):
 - **Accepts the loss of yaw resistance** (twisting the stretcher around its
   long axis) — that load case doesn't exist for this stand.
 
-### Plate height differs by stretcher position
+### Plate height: 5" everywhere
 
-- **Top stretchers: 7.5" tall.** This stretcher carries the most: stretcher
-  tube enters at top of plate, 2 bolts below the tube, and a knee brace
-  below the bolts. The plate has to be tall enough to fit all three with
-  socket-wrench clearance between the lower bolt and the brace (~1.5").
-  The plate's top edge is flush with the leg top (35.25") so it doesn't
-  protrude above.
-- **Middle and bottom stretchers: 5" tall.** No knee brace, just tube +
-  2 bolts straddling. Plate is centered on the stretcher centerline.
-  Bolts at ±1.75" from stretcher centerline (clearing the tube), 0.75"
-  margin to plate edge.
+All 12 plates are identical: **1.5" wide × 5" tall**.
 
-This was the resolution to two problems the user spotted:
-1. The previous 6" plate had 4 bolts in a column, but 2 of them collided
-   with the stretcher tube's intersection of the plate.
-2. The lower bolt on the top stretcher had no socket-wrench clearance to
-   the knee brace.
+- **Top stretchers:** plate top flush with leg top (35.25"). Tube enters
+  the plate at the top (top 1.5"). Both bolts sit *below* the tube —
+  0.75" below tube bottom, then 1.5" further below.
+- **Middle and bottom stretchers:** plate centered on stretcher centerline.
+  Tube enters mid-plate. One bolt above the tube, one below, at ±1.75"
+  from stretcher centerline, 0.75" margin to plate edges.
 
-Going to **2 bolts** instead of 4 was the bigger insight: 4 bolts was
-overbuilt by ~50× for the loads this stand sees. 2 bolts cuts the tap
-work in half, halves the bolt count, and resolves the tube-collision
-without needing extra plate height for middle/bottom stretchers.
+Earlier iterations had the top plate at 7.5" tall to accommodate a knee
+brace below the bolts, but the brace was dropped (see "Bracing strategy"
+above). With no brace, the top plate doesn't need extra height.
+
+Going to **2 bolts per joint** instead of 4 was an important simplification:
+4 bolts was overbuilt by ~50× for the loads this stand sees. 2 bolts cuts
+the tap work in half, halves the bolt count, and resolves the bolt-tube
+collision that 4-bolts-in-a-column would have had on middle/bottom plates.
 
 ### Bolts thread directly into plate A
 
@@ -160,30 +161,6 @@ Flange plates are forgiving:
 
 Internal sleeves are cleaner-looking but require very tight tolerances on
 tube ID and sleeve OD.
-
-## Knee braces
-
-The top corner of each long-stretcher joint has a small tube knee brace
-welded as part of the stretcher assembly:
-
-- **Outboard end** mitered at the brace's slope angle so the cut face is
-  vertical, sitting flush against plate B's stand-interior face (well below
-  the bolts)
-- **Inboard end** mitered at (90° − slope) so the cut face is horizontal,
-  sitting flush against the underside of the stretcher tube (~5" inboard
-  from the joint)
-- Brace is part of the stretcher assembly — bolts on as one unit, knockdown
-  property preserved
-
-The braces are borderline structurally necessary given the tall-plate moment
-resistance, but they're a clean structural detail that visually reinforces
-the joint corner. From the side view, you see a small triangle in the
-upper-corner area: stretcher on top, plate B's lower extension on the
-outside, brace closing the triangle.
-
-This was the resolution to the "knee brace can't connect to the leg without
-breaking knockdown" problem — by extending plate B downward beyond the
-stretcher, we get a weld surface that travels with the stretcher.
 
 ## Plywood shelf support
 

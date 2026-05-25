@@ -175,11 +175,16 @@ module plate_b(stretcher_end_x, y_center, z_center, side, plate_h) {
             cube([PLATE_B_THK, PLATE_W, plate_h]);
 }
 
-// 2 bolts per joint, straddling the stretcher tube vertically.
-// stretcher_z is the stretcher tube centerline; bolts sit ±BOLT_OFFSET from it.
-module bolts_at_joint(stretcher_end_x, y_center, stretcher_z, side) {
+// 2 bolts per joint.
+//   Top stretcher: both bolts BELOW the tube (no room above — plate top is
+//                  flush with leg top). Bolt 1 0.75" below tube bottom;
+//                  bolt 2 a further 1.5" below (1.5" socket clearance to
+//                  knee-brace top).
+//   Middle/bottom: bolts straddle stretcher centerline at ±BOLT_OFFSET.
+module bolts_at_joint(stretcher_end_x, y_center, stretcher_z, side, is_top) {
+    offsets = is_top ? [-1.5, -3.0] : [+BOLT_OFFSET, -BOLT_OFFSET];
     bolt_head_x = stretcher_end_x;
-    for (dz = [-BOLT_OFFSET, BOLT_OFFSET]) {
+    for (dz = offsets) {
         color(BOLT_C)
             translate([bolt_head_x, y_center, stretcher_z + dz])
                 rotate([0, side*90, 0])
@@ -250,11 +255,11 @@ module long_stretcher(y_center, z_str, is_top) {
 
     // Plate B at LEFT end (side = +1, plate body on -X side of stretcher end)
     plate_b(STRETCHER_END_LEFT,  y_center, z_plate, +1, plate_h);
-    bolts_at_joint(STRETCHER_END_LEFT,  y_center, z_str, +1);
+    bolts_at_joint(STRETCHER_END_LEFT,  y_center, z_str, +1, is_top);
 
     // Plate B at RIGHT end (side = -1, plate body on +X side of stretcher end)
     plate_b(STRETCHER_END_RIGHT, y_center, z_plate, -1, plate_h);
-    bolts_at_joint(STRETCHER_END_RIGHT, y_center, z_str, -1);
+    bolts_at_joint(STRETCHER_END_RIGHT, y_center, z_str, -1, is_top);
 }
 
 // === KNEE BRACE ==============================================================
@@ -281,23 +286,28 @@ module knee_brace(end_x, y_center, side) {
     in_x   = end_x + side * KNEE_INBOARD;
     in_z   = Z_TOP_STR - TUBE/2;
 
-    // Polygon corners (XZ plane). Brace's outboard edge is vertical (height TUBE),
-    // inboard edge is horizontal (width TUBE going outboard from in_x).
+    // Polygon corners (XZ-plane brace silhouette). Outboard edge vertical (TUBE
+    // tall), inboard edge horizontal (TUBE wide). polygon() lives in XY though,
+    // so we treat polygon-Y as our Z and rotate before extruding.
     //   p1: outboard-bottom (at plate B, lower corner)
-    //   p2: inboard-lower (where brace's lower edge meets vertical line under in_x)
-    //   p3: inboard-upper (at stretcher underside, the corner against the joint)
-    //   p4: outboard-top (at plate B, upper corner)
-    p1 = [out_x,                         out_z];
-    p2 = [in_x - side * TUBE,            in_z - TUBE];
-    p3 = [in_x,                          in_z];
-    p4 = [out_x,                         out_z + TUBE];
+    //   p2: inboard-bottom (bottom wall meets vertical-under-inboard-end)
+    //   p3: inboard-top    (at stretcher underside)
+    //   p4: outboard-top   (at plate B, upper corner)
+    p1 = [out_x,                  out_z];
+    p2 = [in_x - side * TUBE,     in_z - TUBE];
+    p3 = [in_x,                   in_z];
+    p4 = [out_x,                  out_z + TUBE];
+    pts = (side > 0) ? [p1, p2, p3, p4] : [p4, p3, p2, p1];
 
-    pts = (side > 0) ? [p1, p2, p3, p4] : [p4, p3, p2, p1];  // wind correctly for each side
-
+    // rotate([90,0,0]) maps polygon's Y axis to world Z, and makes
+    // linear_extrude's +Z direction become world -Y. Translate by
+    // y_center + TUBE/2 so the extruded shape spans [y_center - TUBE/2,
+    // y_center + TUBE/2] in Y.
     color(STEEL)
-        translate([0, y_center - TUBE/2, 0])
-            linear_extrude(height=TUBE)
-                polygon(pts);
+        translate([0, y_center + TUBE/2, 0])
+            rotate([90, 0, 0])
+                linear_extrude(height=TUBE)
+                    polygon(pts);
 }
 
 // === ANGLE IRON LEDGER =======================================================

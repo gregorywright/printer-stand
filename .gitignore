@@ -1,0 +1,18 @@
+# OpenSCAD output / scratch
+*.bak
+*.csg
+*.echo
+*.stl
+*.dxf
+*.svg
+*.png
+
+# macOS
+.DS_Store
+
+# Editor
+*~
+.#*
+\#*#
+.vscode/
+.idea/

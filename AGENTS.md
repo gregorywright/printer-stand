@@ -142,6 +142,7 @@ no longer applies before suggesting an alternative.
 | `printer_stand_zback.scad` | OpenSCAD 3D model — Z-tube back-panel variant |
 | `SPECS.md` | Hard requirements and dimensions |
 | `DESIGN.md` | Design rationale and decisions |
+| `TOOLS.md` | Tools the owner has, tools to acquire, consumables/shopping list |
 | `AGENTS.md` | This file |
 
 ## Out-of-scope for this project

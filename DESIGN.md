@@ -55,6 +55,17 @@ The stand uses **three bracing elements**, sized to where loads actually go:
    Cables are sufficient and look cleaner than a tube X. They're also
    the hybrid material moment — tube where it's working hardest, cable
    where it's mostly insurance.
+
+   **Alternative variant being considered: Z-tube back panel.** Two welded
+   tube diagonals in a Z pattern (one in the lower bay, one in the upper)
+   instead of cables. The three back-stretchers + two diagonals are
+   pre-welded as a single "back panel" that bolts to the legs through
+   the existing six plate-pair joints. Lower-bay diagonal at ~24°
+   (shallow but in the panel plane), upper-bay diagonal mirrored. Captured
+   in `printer_stand_zback.scad`. Trade-offs: more material/weight
+   (~+8 lb), more dramatic look (visible structural diagonals from behind),
+   no pre-tensioning maintenance, no cable hardware. Owner is comparing
+   visually before picking.
 3. **Welded rectangular corners** on the end frames act like rigid moment
    connections — almost as stiff as a triangle in their own plane.
 

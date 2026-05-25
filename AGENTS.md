@@ -116,6 +116,12 @@ no longer applies before suggesting an alternative.
 
 - **If asked for changes:** edit `printer_stand.scad` and update the
   relevant MD file in the same response. Keep them in sync.
+- **There are TWO SCAD files** — `printer_stand.scad` (cable X back) and
+  `printer_stand_zback.scad` (Z-tube back panel). They must stay in sync
+  except for the back-bracing. If a design change touches anything
+  upstream of the back face (legs, end frames, stretchers, plates,
+  ledgers, shelves, top), update BOTH files. The owner is comparing the
+  two visually and hasn't picked yet.
 - **If asked to add a cut list:** the comment block at the bottom of
   `printer_stand.scad` already has one — refine it there or migrate to a
   dedicated `CUT_LIST.md`.
@@ -132,7 +138,8 @@ no longer applies before suggesting an alternative.
 
 | File | Purpose |
 |---|---|
-| `printer_stand.scad` | OpenSCAD 3D model — open in OpenSCAD to visualize |
+| `printer_stand.scad` | OpenSCAD 3D model — cable-X back variant |
+| `printer_stand_zback.scad` | OpenSCAD 3D model — Z-tube back-panel variant |
 | `SPECS.md` | Hard requirements and dimensions |
 | `DESIGN.md` | Design rationale and decisions |
 | `AGENTS.md` | This file |

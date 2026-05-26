@@ -1,10 +1,11 @@
-# Tools and Supplies
+# Tools
 
-Catalog of tools and consumables for the build. Build-specific dimensions
-and quantities live in `SPECS.md`; this file is about the kit.
+Tools and PPE needed for the build. **Parts and consumables are in
+`SHOPPING.md`** — that's where steel, hardware, paint, fasteners, and the
+cable hardware live.
 
-Check boxes mark items the owner already has. Unchecked items still need
-to be acquired or bought as consumables.
+Checked items are already on hand. Unchecked items still need to be
+acquired.
 
 ## Welding
 
@@ -72,50 +73,6 @@ to be acquired or bought as consumables.
 - [ ] 3/8" mild steel plate stock — ~1 sq ft total (12 plates × 1.5"×5")
 - [ ] 3/16" mild steel plate stock — ~1 sq ft total (12 plates × 1.5"×5")
 
-## Welding consumables
-
-- [ ] Flux-core wire, E71T-11, 0.030" diameter, 2-lb spool (10-lb if doing future projects)
-- [x] Anti-spatter nozzle dip (already have)
-- [ ] Anti-spatter spray (different product — protects the workpiece, not the welder nozzle; nice-to-have for cleanup but not strictly required)
-
-## Hardware
-
-- [ ] 3/8"-16 × 1" hex bolts, grade 5 — qty 30 (24 needed + spares)
-- [ ] 3/8" flat washers — qty 30
-- [ ] 1/2"-13 swivel-base leveling feet, 2" base, ~1.5" stud — qty 4 (McMaster 2417K3 or similar)
-- [ ] 1/2"-13 weld-in threaded inserts — qty 4 (McMaster 91833A132 or similar)
-
-## Wood-top mounting
-
-- [ ] 3/8"-16 threaded inserts for wood (E-Z Lok or knife-thread) — qty 4–8
-- [ ] 3/8"-16 × 1" pan-head machine screws — qty 4–8
-- [ ] 1" fender washers — qty 4–8
-
-## Cable-X version only (`printer_stand.scad`)
-
-Skip this section if going with the Z-back version.
-
-- [ ] 1/8" stainless 7×19 aircraft cable — ~12 ft
-- [ ] Swage eye terminations — qty 4
-- [ ] Stainless turnbuckles, jaw-and-jaw, 3/16" or 1/4" stock — qty 2
-- [ ] Eye plates — qty 4 (small steel pieces welded to legs)
-
-## Finishing
-
-Pick one path:
-
-**DIY rattle-can:**
-- [ ] Acetone or denatured alcohol (degrease)
-- [ ] Self-etching primer for steel (1 can)
-- [ ] Matte/satin black enamel top coat (2–3 cans)
-
-**Powder coat (recommended for durability):**
-- [ ] Drop disassembled frame at local powder coater (~$100–200)
-
-## Floor protection (tile floor)
-
-- [ ] Self-adhesive felt or rubber pads for leveler bases
-
 ## PPE
 
 - [x] Safety glasses (wraparound, ANSI Z87.1+)
@@ -123,21 +80,17 @@ Pick one path:
 - [x] Hearing protection (earmuffs or plugs)
 - [x] Steel-toed boots (optional)
 
-## Approximate total cost
+## Approximate cost — tools only
 
-Starting from nothing on the unchecked items:
+For unchecked items above (parts/consumables in `SHOPPING.md` are separate):
 
 | Category | Cost |
 |---|---|
-| Welding tools | ~$200 |
-| Cutting/grinding consumables | ~$50 |
+| Welding tools | covered |
+| Cutting/grinding consumables | ~$10 (grinding wheels) |
 | Drilling/tapping tools + fluid | ~$60 |
-| Measuring tools | ~$80 |
-| Hand tools | ~$60 |
-| Steel tube stock | ~$200–300 |
-| Plate + angle stock | ~$80 |
-| Hardware (bolts, washers, levelers, inserts) | ~$80 |
-| Cable hardware (cable version only) | ~$100 |
-| Finishing | ~$50 DIY / $200 pro |
-| PPE | ~$80 |
-| **Total** | **~$1,000–1,400** |
+| Measuring tools | ~$10 (soapstone) |
+| Hand tools | ~$40 (torque wrench) |
+| **Tools subtotal** | **~$120** |
+
+See `SHOPPING.md` for parts cost (~$375–$655 depending on variant and finish).

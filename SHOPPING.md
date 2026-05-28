@@ -71,9 +71,14 @@ more expensive on tube.
 ## Hardware — leveling feet (both variants)
 
 - [ ] **1/2"-13 swivel-base leveling feet**, 2" base, ~1.5" stud, qty **4**
-  - McMaster 2417K3 or equivalent
+  - McMaster: search "leveling mount" and filter by stud thread 1/2"-13,
+    stud length 1-1/2", base diameter 2", mount style swivel
+  - Amazon alternative: "1/2-13 leveling foot 2 inch swivel" (cheaper, fine for indoor furniture)
 - [ ] **1/2"-13 weld-in threaded inserts**, qty **4** (one per leg bottom)
-  - McMaster 91833A132 or equivalent
+  - McMaster: search "weld nut for tube" or "weld-in threaded insert"
+    and filter by thread 1/2"-13, sized for 1-1/2" square tube
+  - Amazon alternative: "1/2-13 weld nut tube"
+  - **Not "rivnut" or "rivet nut"** — those are a different product (no welding)
 
 ---
 

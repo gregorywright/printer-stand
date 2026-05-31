@@ -69,11 +69,14 @@ ANGLE_THK     = 1/8;
 H_BOTTOM    = 5;           // top of bottom-shelf cross-tube, off floor
 H_MIDDLE    = 23.75;       // top of middle-shelf cross-tube — ~10.56" upper-bay clear
 
-// Leveler NOMINAL lift used to size the legs — set mid-range so the feet
-// can take up build error in BOTH directions (see note at LEG_HT).
-LEVELER_HT    = 1.0;       // nominal floor->leg-bottom gap (was 0.5)
-LEVELER_RANGE = 0.75;      // usable +/- foot travel of chosen hardware (doc)
-LEVELER_BASE  = 2;
+// Leveler = M12x1.75 swivel foot: 2" (50mm) rubber base, 20mm tall, 50mm
+// stud, with a jam nut. The base (0.8") + jam nut set the floor, so the
+// NOMINAL lift is ~1.75" (keeps the exposed stud short = rigid).
+LEVELER_HT       = 1.75;   // nominal floor->leg-tube-bottom (base+nut+stud+cap)
+LEVELER_BASE     = 2.0;    // swivel base diameter (50mm)
+LEVELER_BASE_HT  = 0.8;    // swivel base height (20mm)
+LEVELER_STUD_DIA = 0.47;   // M12 stud (~12mm) — for drawing only
+LEVELER_RANGE    = 0.5;    // usable +/- foot travel (doc)
 
 CABLE_DIA    = 1/8;
 
@@ -87,7 +90,7 @@ LEG_TOP_Z    = FRAME_TOP_Z;
 // final length after dry-assembly. All flange plates sit at/above H_BOTTOM
 // (5"), well above the trim. Feet (+/-LEVELER_RANGE) + wood-underside shims
 // then absorb residual height error and floor flatness.
-LEG_HT       = LEG_TOP_Z - LEG_BOTTOM_Z;     // nominal 34.8125 at 1.0" lift
+LEG_HT       = LEG_TOP_Z - LEG_BOTTOM_Z;     // nominal 34.0625 at 1.75" lift
 
 FRONT_Y = -FRAME_DEPTH/2 + TUBE/2;
 BACK_Y  =  FRAME_DEPTH/2 - TUBE/2;
@@ -204,9 +207,13 @@ module bolts_at_joint(stretcher_end_x, y_center, stretcher_z, side, is_top) {
 
 // === LEVELER =================================================================
 module leveler(x, y) {
-    color(LEVEL_C)
-        translate([x, y, 0])
-            cylinder(d=LEVELER_BASE, h=LEVELER_HT);
+    color(LEVEL_C) {
+        // rubber swivel base
+        translate([x, y, 0]) cylinder(d=LEVELER_BASE, h=LEVELER_BASE_HT);
+        // M12 stud up to the leg-tube bottom
+        translate([x, y, LEVELER_BASE_HT])
+            cylinder(d=LEVELER_STUD_DIA, h=LEG_BOTTOM_Z - LEVELER_BASE_HT);
+    }
 }
 
 // === END FRAME ===============================================================
@@ -419,8 +426,8 @@ if (SHOW_FLOOR_REF) floor_ref();
 
 // =======================================================================
 // CUT LIST (Z-back variant — approximate — verify in your physical layout):
-//   Legs:                  4 × ~34.81"  of 1.5"×1.5"×0.120" tube (nominal at
-//                            1.0" leveler lift; cut LONG, trim bottom to fit)
+//   Legs:                  4 × ~34.06"  of 1.5"×1.5"×0.120" tube (nominal at
+//                            1.75" leveler lift; cut LONG, trim bottom to fit)
 //   End-frame horizontals: 6 × 18.75"   of 1.5"×1.5"×0.120" tube
 //                            (FRAME_DEPTH - 2*TUBE = 21.75 - 3.0)
 //   End-frame diagonals:   2 × ~24.4"   (true 45°; single 45° miter each end:
@@ -434,10 +441,11 @@ if (SHOW_FLOOR_REF) floor_ref();
 //   Plate A (tapped):     12 × 1.5"×5"×3/8"   (tapped 3/8"-16, 2 holes per plate)
 //   Plate B (clearance):  12 × 1.5"×5"×3/16"  (drilled ~7/16", 2 holes per plate)
 //   Foot-cap plates:       4 × 1.5"×1.5"×3/8" steel, welded on leg ends (cap),
-//                            tapped 1/2"-13 for the leveler studs
+//                            tapped M12×1.75 for the leveler studs
 //   Angle iron ledgers:    4 × 39.875" of 3/4"×3/4"×1/8" angle
 //   Bolts:                24 × 3/8"-16, ~1.0" long, hex head + flat washer
-//   Levelers:              4 × 1/2"-13 swivel-base, 2" base, ~1.5" stud
+//   Levelers:              4 × M12×1.75 swivel feet, 2" (50mm) rubber base
+//                            (20mm tall), 50mm stud (Luomorgo or similar)
 //   Leg back-wall relief:  drill 1/2" hole through leg back wall behind each
 //                          tapped plate-A hole (24 holes total) for bolt-tip
 //                          clearance — DO NOT TAP through the tube wall.

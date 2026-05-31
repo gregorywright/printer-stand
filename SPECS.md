@@ -55,9 +55,9 @@ unless explicitly renegotiated. Soft design choices live in `DESIGN.md`.
 | Flange plate B (stretcher end) | 1.5" × **5"** × **3/16"** mild steel, drilled ~7/16" clearance (2 holes) |
 | Angle iron ledgers (plywood support) | 3/4" × 3/4" × 1/8" mild angle, runs along inboard top edge of front and back stretchers at the two shelf levels |
 | Bolts | 3/8"-16 grade 5+, ~1.0" long, hex head with flat washer (no nuts — threads engage tapped plate A) |
-| Leveler studs | 1/2"-13 |
-| Leveler base | 2" diameter, swivel-base type |
-| Leveler foot-cap | 1.5"×1.5"×3/8" steel plate, welded on the leg end (cap), tapped 1/2"-13 (~5 threads of engagement) |
+| Leveler studs | M12×1.75 |
+| Leveler foot | 2" (50mm) swivel base, 20mm tall, 50mm stud, rubber/nylon base (Luomorgo or similar) |
+| Leveler foot-cap | 1.5"×1.5"×3/8" steel plate, welded on the leg end (cap), tapped M12×1.75 (~5 threads of engagement) |
 | Cable (back X) | 1/8" stainless 7×19 aircraft cable |
 | Cable terminations | Swaged eye ends, 2 turnbuckles (jaw-and-jaw stainless) |
 | Cable anchors | Welded eye plates on rear face of corner legs |
@@ -86,7 +86,7 @@ unless explicitly renegotiated. Soft design choices live in `DESIGN.md`.
   internal diagonal. Plate A welded flush to leg's inner X face. On long
   stretchers: plate B welded to open tube end. Angle iron ledgers welded
   along the inboard top edge of bottom and middle stretchers. Foot-cap
-  plates welded onto the leg ends (tapped 1/2"-13 for the leveler studs).
+  plates welded onto the leg ends (tapped M12×1.75 for the leveler studs).
 - **Bolted:** all 6 long stretchers attach to end frames via flange plate
   pairs (**2 bolts per joint × 12 joints = 24 bolts total**). Bolts thread
   directly into tapped plate A — no separate nuts.
@@ -141,14 +141,14 @@ keeps the joint geometry forgiving to bolt-length variation.
 
 | Member | Qty | Length (approx.) | Notes |
 |---|---|---|---|
-| Legs | 4 | ~34.81" nominal | 1.5"×1.5"×0.120" tube; cut long, trim bottom to fit |
+| Legs | 4 | ~34.06" nominal | 1.5"×1.5"×0.120" tube; cut long, trim bottom to fit |
 | End-frame horizontals (3 per end frame × 2 end frames) | 6 | 18.75" | 1.5"×1.5"×0.120" tube |
 | End-frame diagonals (one per end frame, lower bay) | 2 | ~24.4" | 1.5"×1.5"×0.120" tube, true 45°, single miter each end |
 | Long stretchers (tube length, end-to-end) | 6 | 39.875" | 1.5"×1.5"×0.120" tube |
 | Angle iron ledgers | 4 | 39.875" | 3/4"×3/4"×1/8" angle |
 | Plate A (tapped, leg side) | 12 | 1.5"×5"×3/8" | 2 tapped 3/8"-16 holes |
 | Plate B (clearance, stretcher end) | 12 | 1.5"×5"×3/16" | 2 clearance ~7/16" holes |
-| Foot-cap plates (leg ends) | 4 | 1.5"×1.5"×3/8" | welded on, tapped 1/2"-13 for leveler |
+| Foot-cap plates (leg ends) | 4 | 1.5"×1.5"×3/8" | welded on, tapped M12×1.75 for leveler |
 | Bolts | 24 | 3/8"-16 × 1" | hex head + flat washer |
 
 ## Weight (estimated)

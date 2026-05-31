@@ -71,15 +71,13 @@ more expensive on tube.
 
 ## Hardware — leveling feet (both variants)
 
-- [ ] **1/2"-13 swivel-base leveling feet**, 2" base, ~1.5" stud, qty **4**
-  - McMaster: search "leveling mount" and filter by stud thread 1/2"-13,
-    stud length 1-1/2", base diameter 2", mount style swivel
-  - Amazon alternative: "1/2-13 leveling foot 2 inch swivel" (cheaper, fine for indoor furniture)
+- [x] **M12×1.75 swivel leveling feet**, 2" (50mm) rubber base, 50mm stud,
+  qty **4** (Luomorgo or similar). Rubber/nylon base doubles as the floor
+  pad. Confirm pitch is **M12×1.75** (coarse) so a standard M12 tap fits.
 - [ ] **Make your own foot-cap plates**: 4 × 1.5"×1.5"×3/8" steel squares,
-  welded onto the leg ends (cap), then tapped 1/2"-13 for the leveler studs
+  welded onto the leg ends (cap), then tapped M12×1.75 for the leveler studs
   - Cut from the 3/8" flat-bar offcut (see Steel stock) — no extra material
-  - **Bosch BDT12F13** 1/2"-13 plug tap + 27/64" drill combo (~$13) does the tapping
-    (a tool — also listed in `TOOLS.md`)
+  - **M12×1.75 tap + ~10.2mm (13/32") drill** does the tapping (tool — see `TOOLS.md`)
 
 ---
 
@@ -130,8 +128,8 @@ Pick one path:
 
 ## Floor protection (both variants)
 
-- [ ] Self-adhesive felt or rubber pads for leveler bases — protect tile
-  and add friction so the stand doesn't creep when the printer accelerates
+- Not needed — the M12 leveling feet have rubber/nylon bases that protect
+  the tile and resist creep. (Add felt pads only if you switch to bare-steel feet.)
 
 ---
 
@@ -142,12 +140,12 @@ Pick one path:
 | Steel stock | $220–$380 | $220–$380 |
 | Welding consumables | ~$15 | ~$15 |
 | Bolts + washers | ~$15 | ~$15 |
-| Levelers + 1/2"-13 tap | ~$65 | ~$65 |
+| Levelers + M12 tap | ~$40 | ~$40 |
 | Wood-top mounting hardware | ~$10 | ~$10 |
 | Cable hardware | $80–$120 | — |
 | Finishing (DIY) | ~$50 | ~$50 |
-| Floor pads | ~$5 | ~$5 |
-| **Total parts cost** | **~$455–$655** | **~$375–$535** |
+| Floor pads | $0 (rubber-base feet) | $0 |
+| **Total parts cost** | **~$425–$625** | **~$345–$505** |
 
 If powder-coating instead of rattle-can, add ~$100.
 

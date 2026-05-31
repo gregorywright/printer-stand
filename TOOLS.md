@@ -35,8 +35,8 @@ acquired.
 - [ ] 7/16" drill bit for steel (clearance for 3/8" bolts)
 - [ ] 1/2" drill bit for steel (leg back-wall relief holes)
 - [ ] 3/8"-16 plug tap (Irwin Hanson or similar — cheap taps break and need to be drilled out)
-- [ ] 1/2"-13 plug tap + 27/64" tap drill (Bosch BDT12F13 combo) — for the 4 leveler foot-cap plates
-- [ ] Tap handle (T-handle) sized to fit up to a 1/2" tap shank (e.g., 1/4"–3/4" adjustable) — must hold both the 3/8" and 1/2" taps
+- [ ] M12×1.75 plug tap + ~10.2mm (13/32") tap drill — for the 4 leveler foot-cap plates
+- [ ] Tap handle (T-handle) sized to fit both the 3/8" and M12 tap shanks (e.g., 1/4"–3/4" adjustable)
 - [ ] Center punch (or automatic center punch — easier for steel)
 - [ ] Cutting fluid (Tap Magic, Rapid Tap, etc.)
 
@@ -94,4 +94,4 @@ For unchecked items above (parts/consumables in `SHOPPING.md` are separate):
 | Hand tools | ~$40 (torque wrench) |
 | **Tools subtotal** | **~$120** |
 
-See `SHOPPING.md` for parts cost (~$375–$655 depending on variant and finish).
+See `SHOPPING.md` for parts cost (~$345–$625 depending on variant and finish).

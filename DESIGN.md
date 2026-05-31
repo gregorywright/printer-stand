@@ -246,22 +246,25 @@ for fine adjustment only.
 
 ## Levelers
 
-- **1/2"-13 stud, 2" swivel base.** Studs sized for stiffness, not load — load
-  is fine at 3/8". Bigger stud = less wobble in the threads.
+- **M12×1.75 stud, 2" swivel base.** Studs sized for stiffness, not load —
+  load is fine even at M10/3/8". The fatter M12 (≈ metric 1/2") = less wobble
+  in the threads. Metric was chosen because affordable swivel feet on the
+  market are nearly all metric; M12 preserves the 1/2"-equivalent stiffness.
 - **Swivel base is the key feature.** A fixed base puts a bending moment in
   the stud when the floor isn't perfectly flat; a swivel base keeps the stud
-  in pure axial compression regardless of foot tilt.
+  in pure axial compression regardless of foot tilt. The chosen foot also has
+  a **rubber/nylon base**, so it doubles as the tile-protection / anti-creep
+  pad — no separate felt pads needed.
 - **Tapped foot-cap plate** welded onto the bottom of each leg (a 1.5"×1.5"
-  ×3/8" steel cap), tapped 1/2"-13. ~5 threads of engagement — the foot is in
-  compression, so that's far more than enough. (Chosen over a buy weld-in
-  insert: you already own a tap, and the pre-threaded weld-in feet that fit
-  1.5" square tube are scarce and ~$16 each.)
-- **Set the nominal lift mid-range (~1").** Sizing the legs so the feet sit
-  near the middle of their travel lets them take up build error in both
-  directions. Keep the engaged stud short for rigidity (see height-adjustment
-  caveat above) — the feet are for fine adjustment, not gross correction.
-- **Felt or rubber pads** on the leveler bases for tile-floor friction and
-  protection.
+  ×3/8" steel cap), tapped M12×1.75. ~5 threads of engagement — the foot is in
+  compression, so that's far more than enough. (Chosen over a bought weld-in
+  insert: pre-threaded weld-in feet that fit 1.5" square tube are scarce and
+  ~$16 each; a tapped cap reuses a cheap M12 tap.)
+- **Nominal lift ~1.75".** The foot's 0.8" (20mm) rubber base plus the jam nut
+  set the minimum, so sizing the legs to ~1.75" keeps the *exposed* stud short
+  (~0.2") for rigidity while leaving room to extend to ~2.5"+ if the frame
+  comes out short. Coarse height error is taken out at the legs / wood top;
+  the feet handle floor flatness and small residual.
 
 ## Visual / aesthetic decisions
 

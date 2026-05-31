@@ -10,16 +10,17 @@ unless explicitly renegotiated. Soft design choices live in `DESIGN.md`.
 | Wood top length (X) | **48"** | Fixed — set by intended use |
 | Wood top depth (Y) | **25.75"** | Fixed |
 | Total height (floor → top of wood) | **37"** | Must match adjacent kitchen counter exactly |
-| Wood top thickness | **~1.75"** (target) | Hand-built; tolerance ±1/4". Final height tuned via shims. |
-| Wood overhang | **2" on all 4 sides** | Lets feet clear baseboard/molding; lets top butt against counter |
+| Wood top thickness | **1-3/16" (1.1875")** target | Matches adjacent counter; planed to final after measuring the steel; ±1/8" planing tolerance |
+| Wood overhang — sides (L/R, X) | **2"** (default) | Independent of front/back; lets feet clear molding |
+| Wood overhang — front/back (Y) | **2"** (default) | Independent of sides |
 
 ## Steel frame footprint (derived)
 
 | Dimension | Value |
 |---|---|
-| Steel frame length (X) | 48 − 2·2 = **44"** |
-| Steel frame depth (Y)  | 25.75 − 2·2 = **21.75"** |
-| Steel frame top height | 37 − 1.75 = **35.25"** (nominal — tuned at install) |
+| Steel frame length (X) | 48 − 2·OH_sides = **44"** |
+| Steel frame depth (Y)  | 25.75 − 2·OH_frontback = **21.75"** |
+| Steel frame top height | 37 − 1.1875 = **35.8125"** (nominal — tuned at install) |
 
 ## Constraints
 
@@ -27,8 +28,11 @@ unless explicitly renegotiated. Soft design choices live in `DESIGN.md`.
   74"-tall doorway with a wall 37" away (forces a tight turn). No single
   assembled element may exceed those limits.
 - **Counter-flush height.** The top must end up *exactly* level with the
-  adjacent kitchen counter so equipment can straddle the seam. Height is
-  tuned at the wood-to-steel interface (shims), not the levelers.
+  adjacent kitchen counter so equipment can straddle the seam. Primary
+  height control is cutting the legs to final length at assembly (trim the
+  bottoms after dry-fit). The swivel feet (set mid-range) absorb residual
+  build error and floor flatness; shims at the wood-to-steel interface make
+  the final fine match (±1/4").
 - **Wood movement.** A solid hardwood top of this depth moves ~1/4" across
   grain seasonally. The mounting system must allow this movement without
   cracking the top. (Slotted holes + fender washers; anchor at one point.)
@@ -53,12 +57,12 @@ unless explicitly renegotiated. Soft design choices live in `DESIGN.md`.
 | Bolts | 3/8"-16 grade 5+, ~1.0" long, hex head with flat washer (no nuts — threads engage tapped plate A) |
 | Leveler studs | 1/2"-13 |
 | Leveler base | 2" diameter, swivel-base type |
-| Leveler insert | Weld-in threaded insert, 1/2"-13, ~3/4" engagement length |
+| Leveler foot-cap | 1.5"×1.5"×3/8" steel plate, welded on the leg end (cap), tapped 1/2"-13 (~5 threads of engagement) |
 | Cable (back X) | 1/8" stainless 7×19 aircraft cable |
 | Cable terminations | Swaged eye ends, 2 turnbuckles (jaw-and-jaw stainless) |
 | Cable anchors | Welded eye plates on rear face of corner legs |
 | Shelves | 3/4" plywood (or hardwood — woodworker's choice) |
-| Wood top | Hand-built by owner, ~1.75" thick |
+| Wood top | Hand-built by owner, **1-3/16" thick** (matches counter); red oak / white oak / hard maple |
 
 ## Heights / shelf layout
 
@@ -66,22 +70,23 @@ unless explicitly renegotiated. Soft design choices live in `DESIGN.md`.
 |---|---|
 | Bottom shelf | 5" |
 | Middle shelf | 23.75" |
-| Steel top frame | 35.25" |
+| Steel top frame | 35.8125" |
 | Wood top surface | 37" |
 
 **Vertical clearances:**
 - Floor → bottom shelf: 5" (toe space)
 - Bottom shelf → middle shelf: 17.25" clear (fits 8" filament spools standing up with margin)
-- Middle shelf → underside of top frame: 10" clear
+- Middle shelf → underside of top frame: ~10.56" clear
 
-**End-frame lower-bay diagonal:** 18.75" wide × 17.25" tall bay, diagonal length ~25.5", angle ~42.6° from horizontal.
+**End-frame lower-bay diagonal:** 18.75" wide × 17.25" tall bay. True 45°: starts at the back-top corner (single 45° miter seating on the back leg), runs down toward the front, and lands on the bottom stretcher ~1.5" short of the front leg (the bay is wider than it is tall, so a 45° run can't reach the front corner). Diagonal length ~24.4". Single 45° miter at each end.
 
 ## Joints
 
 - **Welded:** all corners and members within each end frame, including the
   internal diagonal. Plate A welded flush to leg's inner X face. On long
   stretchers: plate B welded to open tube end. Angle iron ledgers welded
-  along the inboard top edge of bottom and middle stretchers.
+  along the inboard top edge of bottom and middle stretchers. Foot-cap
+  plates welded onto the leg ends (tapped 1/2"-13 for the leveler studs).
 - **Bolted:** all 6 long stretchers attach to end frames via flange plate
   pairs (**2 bolts per joint × 12 joints = 24 bolts total**). Bolts thread
   directly into tapped plate A — no separate nuts.
@@ -94,8 +99,8 @@ unless explicitly renegotiated. Soft design choices live in `DESIGN.md`.
 - Plates are **1.5" wide × 5" tall**, oriented vertically (no Y-direction
   protrusion — plate width matches leg width).
 - **All 12 joints use identical plate dimensions.**
-- **Top stretchers:** plate top flush with leg top (35.25"), so plate
-  extends from 35.25" down to 30.25". Stretcher tube enters at top of
+- **Top stretchers:** plate top flush with leg top (35.8125"), so plate
+  extends from 35.8125" down to 30.8125". Stretcher tube enters at top of
   plate (top 1.5"). Both bolts sit *below* the tube — 0.75" below tube
   bottom and 1.5" further below.
 - **Middle and bottom stretchers:** plate centered on stretcher centerline.
@@ -136,13 +141,14 @@ keeps the joint geometry forgiving to bolt-length variation.
 
 | Member | Qty | Length (approx.) | Notes |
 |---|---|---|---|
-| Legs | 4 | 34.75" | 1.5"×1.5"×0.120" tube |
+| Legs | 4 | ~34.81" nominal | 1.5"×1.5"×0.120" tube; cut long, trim bottom to fit |
 | End-frame horizontals (3 per end frame × 2 end frames) | 6 | 18.75" | 1.5"×1.5"×0.120" tube |
-| End-frame diagonals (one per end frame, lower bay) | 2 | ~25.5" | 1.5"×1.5"×0.120" tube, ~42.6° |
+| End-frame diagonals (one per end frame, lower bay) | 2 | ~24.4" | 1.5"×1.5"×0.120" tube, true 45°, single miter each end |
 | Long stretchers (tube length, end-to-end) | 6 | 39.875" | 1.5"×1.5"×0.120" tube |
 | Angle iron ledgers | 4 | 39.875" | 3/4"×3/4"×1/8" angle |
 | Plate A (tapped, leg side) | 12 | 1.5"×5"×3/8" | 2 tapped 3/8"-16 holes |
 | Plate B (clearance, stretcher end) | 12 | 1.5"×5"×3/16" | 2 clearance ~7/16" holes |
+| Foot-cap plates (leg ends) | 4 | 1.5"×1.5"×3/8" | welded on, tapped 1/2"-13 for leveler |
 | Bolts | 24 | 3/8"-16 × 1" | hex head + flat washer |
 
 ## Weight (estimated)

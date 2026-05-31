@@ -81,8 +81,13 @@ design decision:
   remains an option.
 - Tube diagonals on end frames chosen over cables — A1 bedslinger loads
   the end-frame plane heavily, cables would be marginal there.
-- End-frame diagonal in the **lower bay** (not upper). Geometry currently
-  ~42.6° (not strict 45°) — driven by useful shelf heights, not pure angle.
+- End-frame diagonal in the **lower bay** (not upper). **True 45°**, single
+  45° miter at each end — chosen because 45° is the only non-90° angle the
+  owner can lay out and cut accurately (speed square + angle grinder, no
+  protractor). Runs back-top → front-bottom; since the bay is wider than
+  tall, it lands on the bottom stretcher ~1.5" short of the front leg. Both
+  end frames matched (same orientation). Earlier corner-to-corner ~42.6°
+  was dropped because it required hard-to-cut, non-45° miters.
 - H_MIDDLE = 23.75" gives 10" upper-bay clearance and 17.25" lower-bay
   clearance (fits 8" filament spools standing up).
 - Knee braces **kept** — welded between plate B's lower extension and the
@@ -91,7 +96,15 @@ design decision:
 - Flange-plate joints chosen over tube-in-tube sleeves — easier for a
   beginner welder, more forgiving on cut accuracy.
 - Levelers chosen over casters — rigidity priority. Caster conversion path
-  is preserved (chop legs, weld plates).
+  is preserved (chop legs, weld plates). Nominal lift set mid-range (~1") so
+  the feet absorb build error both ways. **Primary height control is cutting
+  the legs to final length at assembly** (cut long, trim the bottoms after
+  dry-fit — all flange plates sit at/above H_BOTTOM = 5", so trimming touches
+  no joint). Do NOT fix big height errors with stud extension (a long
+  extended stud reintroduces wobble).
+- **Overhangs are split:** sides (L/R, X) and front/back (Y) are independent
+  variables (`OVERHANG_LR`, `OVERHANG_FB`), both default 2". They drive the
+  steel footprint (FRAME_LENGTH, FRAME_DEPTH).
 - Wood mounted via slotted holes + threaded inserts + fender washers —
   allows seasonal movement, allows clean removal.
 
@@ -122,6 +135,11 @@ no longer applies before suggesting an alternative.
   upstream of the back face (legs, end frames, stretchers, plates,
   ledgers, shelves, top), update BOTH files. The owner is comparing the
   two visually and hasn't picked yet.
+- **The SCAD models STEEL ONLY.** The wood top and plywood shelves are NOT
+  drawn (cut to fit after the frame is built); the wood dimensions are kept
+  as variables only because they drive the steel footprint via the
+  overhangs. The angle-iron ledgers (the plywood supports) ARE modeled.
+  Keep it that way unless the owner asks otherwise.
 - **If asked to add a cut list:** the comment block at the bottom of
   `printer_stand.scad` already has one — refine it there or migrate to a
   dedicated `CUT_LIST.md`.

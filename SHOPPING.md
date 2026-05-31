@@ -23,8 +23,9 @@ Items checked are already on hand or already ordered.
   - ~52.4 ft used, rest is waste/practice margin
 - [ ] **3/4"×3/4"×1/8" mild steel angle** — buy **1× 20-ft stick** (~20 ft)
   - Used on: 4 angle-iron ledgers, 39.875" each (~13.3 ft used)
-- [ ] **1.5"-wide × 3/8" flat bar** — buy **6 ft**
-  - Cut to 5" lengths for plate A (12 plates needed)
+- [ ] **1.5"-wide × 3/8" flat bar** — buy **7 ft**
+  - Cut to 5" lengths for plate A (12 plates = 5 ft), plus 4 × 1.5" foot-cap
+    plates for the leg ends (~6") — buying 7 ft covers both with margin
   - Tip: buy *flat bar* in the exact width you need. Way cheaper than
     cutting plates out of sheet.
 - [ ] **1.5"-wide × 3/16" flat bar** — buy **6 ft**
@@ -74,11 +75,11 @@ more expensive on tube.
   - McMaster: search "leveling mount" and filter by stud thread 1/2"-13,
     stud length 1-1/2", base diameter 2", mount style swivel
   - Amazon alternative: "1/2-13 leveling foot 2 inch swivel" (cheaper, fine for indoor furniture)
-- [ ] **1/2"-13 weld-in threaded inserts**, qty **4** (one per leg bottom)
-  - McMaster: search "weld nut for tube" or "weld-in threaded insert"
-    and filter by thread 1/2"-13, sized for 1-1/2" square tube
-  - Amazon alternative: "1/2-13 weld nut tube"
-  - **Not "rivnut" or "rivet nut"** — those are a different product (no welding)
+- [ ] **Make your own foot-cap plates**: 4 × 1.5"×1.5"×3/8" steel squares,
+  welded onto the leg ends (cap), then tapped 1/2"-13 for the leveler studs
+  - Cut from the 3/8" flat-bar offcut (see Steel stock) — no extra material
+  - **Bosch BDT12F13** 1/2"-13 plug tap + 27/64" drill combo (~$13) does the tapping
+    (a tool — also listed in `TOOLS.md`)
 
 ---
 
@@ -141,7 +142,7 @@ Pick one path:
 | Steel stock | $220–$380 | $220–$380 |
 | Welding consumables | ~$15 | ~$15 |
 | Bolts + washers | ~$15 | ~$15 |
-| Levelers + weld-in inserts | ~$60 | ~$60 |
+| Levelers + 1/2"-13 tap | ~$65 | ~$65 |
 | Wood-top mounting hardware | ~$10 | ~$10 |
 | Cable hardware | $80–$120 | — |
 | Finishing (DIY) | ~$50 | ~$50 |
@@ -154,6 +155,8 @@ If powder-coating instead of rattle-can, add ~$100.
 
 ## Wood (you have this)
 
-- [x] Hardwood for the top, ~48"×25.75"×~1.75"
-- [x] Plywood for the two shelves: 2× 40.875"×17.25"×3/4"
-  (cut from one 4'×8' sheet of 3/4" plywood with plenty left over)
+- [x] Hardwood for the top, ~48"×25.75"×**1-3/16"** (matches the adjacent
+  counter). Red oak / white oak / hard maple — hard enough not to dent in
+  light bench use. Plane to final thickness after measuring the built frame.
+- [x] Plywood for the two shelves: cut to fit after the frame is built
+  (from one 4'×8' sheet of 3/4" plywood)

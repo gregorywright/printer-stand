@@ -116,7 +116,7 @@ Why this geometry over a square plate (e.g. 3"×3"):
 
 All 12 plates are identical: **1.5" wide × 5" tall**.
 
-- **Top stretchers:** plate top flush with leg top (35.25"). Tube enters
+- **Top stretchers:** plate top flush with leg top (35.8125"). Tube enters
   the plate at the top (top 1.5"). Both bolts sit *below* the tube —
   0.75" below tube bottom, then 1.5" further below.
 - **Middle and bottom stretchers:** plate centered on stretcher centerline.
@@ -218,17 +218,31 @@ humid → winter dry). Grain runs the 48" direction, so movement is in the Y
 
 ## Height adjustment
 
-Two independent mechanisms, deliberately decoupled:
+Three mechanisms, deliberately decoupled, in order of who does the heavy lifting:
 
 | Adjustment | Mechanism | Range |
 |---|---|---|
-| Floor flatness | Leveler studs at each leg | ~1" |
-| Counter-height match | Shims between steel top and wood underside | ±1/4" |
+| Build-height error | Cut legs to final length at assembly (trim bottoms) | unlimited (down) |
+| Floor flatness + residual error | Leveler studs at each leg | ~±0.75" around nominal |
+| Counter-height match (fine) | Shims between steel top and wood underside | ±1/4" |
 
-This means: build the steel frame to *counter-height − minimum-wood-thickness − 1/4"*,
-then shim the wood up to exact counter-height. Floor flatness handled separately
-at the levelers. Re-shimming for seasonal wood movement (or a refinish, or a
-move) doesn't require touching the levelers.
+**Legs are the primary height control, and the most forgiving — a first-time
+welder's safety net.** Cut the legs deliberately *long*, dry-assemble the
+frame, measure against the actual counter, then trim the leg *bottoms* to
+final length. Every flange plate sits at or above H_BOTTOM (5"), well above
+the trim zone, so trimming the bottom touches no joint. This means a frame
+that comes out too tall is fixed with the chop saw, not lived with.
+
+The leveler nominal lift is set mid-range (~1") so the feet can take up
+residual error in *both* directions and handle floor flatness. Shims at the
+wood-to-steel interface make the final fine counter-match (±1/4") and let you
+re-tune for seasonal wood movement, a refinish, or a move without touching
+the legs or feet.
+
+**Caveat (rigidity):** don't lean on a lot of leveler stud extension to fix a
+short frame — a long extended stud is a cantilever that reintroduces the wobble
+the design works to avoid. Big errors get corrected at the legs; the feet are
+for fine adjustment only.
 
 ## Levelers
 
@@ -237,9 +251,15 @@ move) doesn't require touching the levelers.
 - **Swivel base is the key feature.** A fixed base puts a bending moment in
   the stud when the floor isn't perfectly flat; a swivel base keeps the stud
   in pure axial compression regardless of foot tilt.
-- **Weld-in threaded insert** in the bottom of each leg. Closes the open tube
-  end and provides ~3/4" of thread engagement (1.5× stud diameter — the
-  sweet spot).
+- **Tapped foot-cap plate** welded onto the bottom of each leg (a 1.5"×1.5"
+  ×3/8" steel cap), tapped 1/2"-13. ~5 threads of engagement — the foot is in
+  compression, so that's far more than enough. (Chosen over a buy weld-in
+  insert: you already own a tap, and the pre-threaded weld-in feet that fit
+  1.5" square tube are scarce and ~$16 each.)
+- **Set the nominal lift mid-range (~1").** Sizing the legs so the feet sit
+  near the middle of their travel lets them take up build error in both
+  directions. Keep the engaged stud short for rigidity (see height-adjustment
+  caveat above) — the feet are for fine adjustment, not gross correction.
 - **Felt or rubber pads** on the leveler bases for tile-floor friction and
   protection.
 
@@ -254,9 +274,11 @@ move) doesn't require touching the levelers.
 - **Mixed material language:** tube on the high-stress plane (end frames),
   cable on the low-stress plane (back). Reads as deliberate rather than
   industrial-leftover.
-- **End-frame diagonals can mirror or match.** Mirrored = symmetric front
-  view, more "furniture." Matched = directional, more "industrial cart."
-  Owner's call.
+- **End-frame diagonals are matched, not mirrored.** Both run back-top →
+  front-bottom (same orientation in each end frame) — a directional,
+  more "industrial cart" look. Chosen alongside the single-miter 45°
+  detail below for build simplicity (identical cuts, identical layout
+  on both end frames).
 
 ## Shelf heights
 
@@ -264,16 +286,28 @@ move) doesn't require touching the levelers.
 |---|---|---|
 | Bottom | 5" | 17.25" (fits 8" filament spools standing up + margin) |
 | Middle | 23.75" | 10" (small printers/accessories — printers actually live on top) |
-| Top frame | 35.25" | (1.75" of wood top) |
+| Top frame | 35.8125" | (1-3/16" of wood top) |
 
 The 17.25" clear space on the bottom shelf was driven by the 8"-diameter
 filament spool standing-up requirement. The 10" upper-bay clearance was an
 explicit choice to keep the middle shelf usefully accessible (filament,
 small parts, tools) while leaving a square-ish lower bay for the diagonal.
 
-The lower-bay diagonal at this geometry runs at ~42.6° from horizontal —
-close enough to 45° that the eye can't tell the difference, but the shelf
-heights remain useful rather than driven by a strict 45° geometry.
+The lower-bay diagonal runs at a **true 45°**. Because the bay is wider
+(18.75") than tall (17.25"), a 45° diagonal spans a 17.25" square: it rises
+the full bay height but lands on the bottom stretcher ~1.5" short of the
+front leg. That small offset is structurally negligible (the diagonal still
+triangulates the bay with the same ~50:1 racking margin) and reads as an
+intentional detail.
+
+Why a true 45° instead of the earlier corner-to-corner ~42.6°: it's the
+only non-90° angle that can be laid out and cut accurately with a speed
+square and an angle grinder — no protractor or angle finder needed. Every
+diagonal cut is a single 45° miter (one cut per end), and both end frames
+use identical cuts. The diagonal starts at the back-top corner (miter
+seating on the back leg) and runs down to the front. This was a
+first-time-welder simplification: it trades a hard-to-cut compound corner
+joint for two easy, identical 45° miters with flat fillet welds.
 
 ## Future modifications anticipated
 

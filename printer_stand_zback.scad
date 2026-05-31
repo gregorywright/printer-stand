@@ -31,15 +31,20 @@ $fn = 24;
 
 // === USER-EDITABLE: TOGGLES ===
 SHOW_WOOD_TOP    = true;
-SHOW_SHELVES     = true;
 SHOW_FLOOR_REF   = true;
 
 // === USER-EDITABLE: DIMENSIONS ===
-WOOD_LENGTH = 48;          // long dimension of wood top (X)
+// Wood top IS drawn (for proportion); plywood shelves are NOT (cut to fit).
+// The wood size also drives the steel frame footprint via the overhangs.
+WOOD_LENGTH = 48;          // long dimension of wood top (X, left-right)
 WOOD_DEPTH  = 25.75;       // front-to-back of wood top (Y)
-WOOD_THK    = 1.75;        // wood top nominal thickness
+WOOD_THK    = 1.1875;      // wood top thickness 1-3/16" (sets steel-top height)
 TOTAL_HT    = 37;          // floor to top-of-wood (Z) — match counter
-OVERHANG    = 2;           // wood overhang on all 4 sides
+
+// Overhangs split: sides (left/right, X) vs front/back (Y). Default both
+// to 2"; set independently as desired.
+OVERHANG_LR = 2;           // overhang at the left/right ends  (reduces X)
+OVERHANG_FB = 2;           // overhang at the front/back edges (reduces Y)
 
 TUBE        = 1.5;         // square tube outer dimension (1.5"x1.5"x0.120")
 
@@ -62,22 +67,27 @@ ANGLE_LEG     = 0.75;      // each leg of the angle is 3/4"
 ANGLE_THK     = 1/8;
 
 H_BOTTOM    = 5;           // top of bottom-shelf cross-tube, off floor
-H_MIDDLE    = 23.75;       // top of middle-shelf cross-tube — gives 10" upper-bay clear
+H_MIDDLE    = 23.75;       // top of middle-shelf cross-tube — ~10.56" upper-bay clear
 
-LEVELER_HT   = 0.5;
-LEVELER_BASE = 2;
+// Leveler NOMINAL lift used to size the legs — set mid-range so the feet
+// can take up build error in BOTH directions (see note at LEG_HT).
+LEVELER_HT    = 1.0;       // nominal floor->leg-bottom gap (was 0.5)
+LEVELER_RANGE = 0.75;      // usable +/- foot travel of chosen hardware (doc)
+LEVELER_BASE  = 2;
 
 CABLE_DIA    = 1/8;
 
-SHELF_THK    = 0.75;
-
 // === DERIVED ===
-FRAME_LENGTH = WOOD_LENGTH - 2*OVERHANG;     // 44
-FRAME_DEPTH  = WOOD_DEPTH  - 2*OVERHANG;     // 21.75
-FRAME_TOP_Z  = TOTAL_HT - WOOD_THK;          // 35.25
-LEG_BOTTOM_Z = LEVELER_HT;                   // 0.5 (top of leveler base)
+FRAME_LENGTH = WOOD_LENGTH - 2*OVERHANG_LR;  // 44    (sides)
+FRAME_DEPTH  = WOOD_DEPTH  - 2*OVERHANG_FB;  // 21.75 (front/back)
+FRAME_TOP_Z  = TOTAL_HT - WOOD_THK;          // 35.8125 (1-3/16" wood top)
+LEG_BOTTOM_Z = LEVELER_HT;                   // nominal leg-bottom off floor
 LEG_TOP_Z    = FRAME_TOP_Z;
-LEG_HT       = LEG_TOP_Z - LEG_BOTTOM_Z;     // 34.75
+// Legs are the easiest dimension to correct: cut LONG and trim the BOTTOM to
+// final length after dry-assembly. All flange plates sit at/above H_BOTTOM
+// (5"), well above the trim. Feet (+/-LEVELER_RANGE) + wood-underside shims
+// then absorb residual height error and floor flatness.
+LEG_HT       = LEG_TOP_Z - LEG_BOTTOM_Z;     // nominal 34.8125 at 1.0" lift
 
 FRONT_Y = -FRAME_DEPTH/2 + TUBE/2;
 BACK_Y  =  FRAME_DEPTH/2 - TUBE/2;
@@ -91,21 +101,20 @@ STRETCHER_END_LEFT  = LEG_INNER_X_LEFT  + PLATE_A_THK + PLATE_B_THK;
 STRETCHER_END_RIGHT = LEG_INNER_X_RIGHT - PLATE_A_THK - PLATE_B_THK;
 
 // Stretcher centerlines
-Z_TOP_STR = FRAME_TOP_Z - TUBE/2;            // 34.5
+Z_TOP_STR = FRAME_TOP_Z - TUBE/2;            // 35.0625
 Z_MID_STR = H_MIDDLE - TUBE/2;               // 23.0
 Z_BOT_STR = H_BOTTOM - TUBE/2;               // 4.25
 
 // Plate centerlines (Z). Top plate is asymmetric — top flush with leg top
-// (35.25") so it doesn't poke above. Plate H = 5", so plate center = 32.75.
+// (35.8125") so it doesn't poke above. Plate H = 5", center = 33.3125.
 // Other plates are centered on the stretcher centerline.
-Z_TOP_PLATE = FRAME_TOP_Z - PLATE_H/2;       // 32.75 (top edge at 35.25)
+Z_TOP_PLATE = FRAME_TOP_Z - PLATE_H/2;       // 33.3125 (top edge at 35.8125)
 Z_MID_PLATE = Z_MID_STR;                     // 23.0
 Z_BOT_PLATE = Z_BOT_STR;                     //  4.25
 
 // Colors
 STEEL    = [0.55, 0.57, 0.60];
 WOOD     = [0.62, 0.42, 0.22];
-SHELF    = [0.78, 0.62, 0.40];
 PLATE_C  = [0.40, 0.42, 0.45];
 BOLT_C   = [0.15, 0.15, 0.18];
 CABLE_C  = [0.85, 0.85, 0.88];
@@ -203,8 +212,8 @@ module leveler(x, y) {
 // === END FRAME ===============================================================
 // One welded end frame in the YZ plane at X = x0.
 // Two legs, three horizontal cross-tubes (bottom/middle shelves + top),
-// one internal diagonal in the lower bay (~42.6° at this geometry),
-// and three plate A's on each leg's inner X face.
+// one internal diagonal in the lower bay (true 45°, single-miter — see
+// below), and three plate A's on each leg's inner X face.
 
 module end_frame(x0) {
     // Two vertical legs
@@ -223,11 +232,32 @@ module end_frame(x0) {
     y_tube(inner_front, L, x0, Z_MID_STR);
     y_tube(inner_front, L, x0, Z_TOP_STR);
 
-    // Internal diagonal in the lower bay: front-bottom-corner of bay to
-    // back-top-corner of bay. Welded into end frame.
-    p1 = [x0, FRONT_Y + TUBE/2, H_BOTTOM];
-    p2 = [x0, BACK_Y  - TUBE/2, H_MIDDLE - TUBE];
-    tube_between(p1, p2);
+    // Internal diagonal in the lower bay, at a TRUE 45°, with a SINGLE 45°
+    // miter at each end (no chevron/arrow, no square cut). Modeled as a
+    // Y-Z profile (4 corners) extruded TUBE thick in X, so the miter faces
+    // are real flat cuts that seat against the members:
+    //   * upper end: VERTICAL miter face, seats flat on the back leg's
+    //     inner face; its top corner tucks into the back-top bay corner
+    //     (leg inner face × middle-stretcher underside).
+    //   * lower end: HORIZONTAL miter face, seats flat on the bottom
+    //     stretcher's top; the toe lands ~1.5" shy of the front leg.
+    by_   = BACK_Y - TUBE/2;        // 9.375  back leg inner face (Y)
+    tz_   = H_MIDDLE - TUBE;        // 22.25  middle-stretcher underside (Z)
+    bz_   = H_BOTTOM;               // 5      bottom-stretcher top (Z)
+    face_ = TUBE * sqrt(2);         // vertical height of the 45° upper miter
+    diag_pts = [
+        [by_,                       tz_],          // top-back (tucks in corner)
+        [by_,                       tz_ - face_],  // bottom-back
+        [by_ - (tz_ - face_ - bz_), bz_],          // heel (back of lower miter)
+        [by_ - (tz_ - bz_),         bz_]           // toe  (~1.5" off front leg)
+    ];
+    color(STEEL)
+        multmatrix([[0,0,1, x0 - TUBE/2],
+                    [1,0,0, 0],
+                    [0,1,0, 0],
+                    [0,0,0, 1]])
+            linear_extrude(height = TUBE)
+                polygon(diag_pts);
 
     // Plate A's on the leg's inner X face at each shelf level.
     side          = (x0 < 0) ? +1 : -1;
@@ -288,8 +318,6 @@ module angle_ledger(y_center, z_str, y_dir) {
 
     // Vertical leg: TUBE/2 inward of stretcher's inner Y face.
     // Sits against the upper portion of the tube's inner side wall.
-    // Stretcher inner face (Y nearest stand center) is at y_center + y_dir*(-TUBE/2)
-    // since y_dir=+1 means front stretcher whose inner face is at y_center + TUBE/2... wait.
     // FRONT_Y is negative; front stretcher's inner-toward-center face is at
     // FRONT_Y + TUBE/2 (positive direction). For BACK stretcher, inner face
     // is at BACK_Y - TUBE/2. We want angle_inner_y on the *interior* side.
@@ -349,32 +377,14 @@ module zback_diagonals() {
                  [x_right, y, lower_bot_z]);
 }
 
-// === WOOD ====================================================================
+// === WOOD TOP ================================================================
+// The wood top IS drawn so proportions read in the model. Plywood shelves are
+// NOT drawn (cut to fit after the frame is built); the angle-iron ledgers
+// (above) are their supports and ARE modeled.
 module wood_top() {
     color(WOOD)
         translate([-WOOD_LENGTH/2, -WOOD_DEPTH/2, FRAME_TOP_Z])
             cube([WOOD_LENGTH, WOOD_DEPTH, WOOD_THK]);
-}
-
-// Plywood shelf — drops onto the angle-iron ledgers on the front and back
-// stretchers. Top surface flush with stretcher tube tops.
-//   X: 1/16" clearance per side from end-frame inner X faces
-//   Y: extends from inboard edge of front angle to inboard edge of back angle
-//   Z: top flush with tube top at H_BOTTOM or H_MIDDLE
-
-module shelf(z_top) {
-    SHELF_CLEAR = 1/16;
-    sx_start = LEG_INNER_X_LEFT  + SHELF_CLEAR;
-    sx_end   = LEG_INNER_X_RIGHT - SHELF_CLEAR;
-    // Y: angle's horizontal-leg inner edge.
-    // Front stretcher's tube inner face is at FRONT_Y + TUBE/2 = -9.375;
-    // angle's horizontal leg extends ANGLE_LEG inward from that, so inner
-    // edge is at FRONT_Y + TUBE/2 + ANGLE_LEG = -8.625. Back: +8.625.
-    sy_start = FRONT_Y + TUBE/2 + ANGLE_LEG;
-    sy_end   = BACK_Y  - TUBE/2 - ANGLE_LEG;
-    color(SHELF)
-        translate([sx_start, sy_start, z_top - SHELF_THK])
-            cube([sx_end - sx_start, sy_end - sy_start, SHELF_THK]);
 }
 
 module floor_ref() {
@@ -404,19 +414,18 @@ for (z = [Z_MID_STR, Z_BOT_STR]) {
 
 zback_diagonals();
 
-if (SHOW_SHELVES) {
-    shelf(H_BOTTOM);
-    shelf(H_MIDDLE);
-}
 if (SHOW_WOOD_TOP)  wood_top();
 if (SHOW_FLOOR_REF) floor_ref();
 
 // =======================================================================
 // CUT LIST (Z-back variant — approximate — verify in your physical layout):
-//   Legs:                  4 × 34.75"   of 1.5"×1.5"×0.120" tube
+//   Legs:                  4 × ~34.81"  of 1.5"×1.5"×0.120" tube (nominal at
+//                            1.0" leveler lift; cut LONG, trim bottom to fit)
 //   End-frame horizontals: 6 × 18.75"   of 1.5"×1.5"×0.120" tube
 //                            (FRAME_DEPTH - 2*TUBE = 21.75 - 3.0)
-//   End-frame diagonals:   2 × ~25.5"   (cut to fit, ~42.6° from horizontal)
+//   End-frame diagonals:   2 × ~24.4"   (true 45°; single 45° miter each end:
+//                            back-top end seats on the back leg, lower end on
+//                            the bottom stretcher ~1.5" shy of the front leg)
 //   Long stretchers:       6 × 39.875"  of 1.5"×1.5"×0.120" tube
 //   Z-back diagonals:      2 × ~43.4"   (cut to fit, ~24° from horizontal)
 //                            mitered at both ends to seat against
@@ -424,16 +433,18 @@ if (SHOW_FLOOR_REF) floor_ref();
 //                            forming a pre-welded "back panel")
 //   Plate A (tapped):     12 × 1.5"×5"×3/8"   (tapped 3/8"-16, 2 holes per plate)
 //   Plate B (clearance):  12 × 1.5"×5"×3/16"  (drilled ~7/16", 2 holes per plate)
+//   Foot-cap plates:       4 × 1.5"×1.5"×3/8" steel, welded on leg ends (cap),
+//                            tapped 1/2"-13 for the leveler studs
 //   Angle iron ledgers:    4 × 39.875" of 3/4"×3/4"×1/8" angle
 //   Bolts:                24 × 3/8"-16, ~1.0" long, hex head + flat washer
 //   Levelers:              4 × 1/2"-13 swivel-base, 2" base, ~1.5" stud
-//   Weld-in inserts:       4 × 1/2"-13 (one per leg bottom)
 //   Leg back-wall relief:  drill 1/2" hole through leg back wall behind each
 //                          tapped plate-A hole (24 holes total) for bolt-tip
 //                          clearance — DO NOT TAP through the tube wall.
-//   Wood top:             48"×25.75"×~1.75"  (your build)
-//   Plywood shelves:       2 × 40.875"×17.25" of 3/4" plywood
-//                            (drops onto angle ledgers; gravity holds it down)
+//   Wood top:             48"×25.75"×1-3/16" red oak/white oak/maple (drawn for
+//                            reference; cut to fit — drives the steel footprint)
+//   Plywood shelves:       cut to fit after the frame is built (NOT modeled;
+//                            drop onto the angle ledgers, gravity holds them)
 //
 // (NO cable hardware — replaced by Z-tube diagonals.)
 // =======================================================================

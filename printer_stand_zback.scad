@@ -116,13 +116,18 @@ Z_TOP_PLATE = FRAME_TOP_Z - PLATE_H/2;       // 33.3125 (top edge at 35.8125)
 Z_MID_PLATE = Z_MID_STR;                     // 23.0
 Z_BOT_PLATE = Z_BOT_STR;                     //  4.25
 
-// Colors
-STEEL    = [0.55, 0.57, 0.60];
-WOOD     = [0.62, 0.42, 0.22];
-PLATE_C  = [0.40, 0.42, 0.45];
-BOLT_C   = [0.15, 0.15, 0.18];
-CABLE_C  = [0.85, 0.85, 0.88];
-LEVEL_C  = [0.18, 0.18, 0.20];
+// Colors — square TUBE is steel-grey; every NON-tube part gets its own
+// contrasting color so the joints/parts read clearly.
+STEEL     = [0.55, 0.57, 0.60];  // all square tube (legs, stretchers, diagonals)
+WOOD      = [0.62, 0.42, 0.22];  // wood top
+PLATE_A_C = [0.20, 0.45, 0.85];  // plate A — tapped, welded to leg (blue)
+PLATE_B_C = [0.95, 0.75, 0.15];  // plate B — clearance, on stretcher end (amber)
+ANGLE_C   = [0.20, 0.65, 0.30];  // angle-iron shelf ledgers (green)
+CLIP_C    = [0.60, 0.25, 0.75];  // wood-top hold-down clips (purple)
+ANCHOR_C  = [0.85, 0.15, 0.15];  // weld-on cable anchors (red, unused here)
+BOLT_C    = [0.15, 0.15, 0.18];  // bolts / screws / washers
+CABLE_C   = [0.85, 0.85, 0.88];  // tensioned cable (unused here)
+LEVEL_C   = [0.18, 0.18, 0.20];  // leveler feet
 
 // === HELPERS =================================================================
 
@@ -178,14 +183,14 @@ module z_tube(z_start, length, x_center, y_center) {
 
 module plate_a(leg_inner_x, y_center, z_center, side) {
     x0 = (side > 0) ? leg_inner_x : leg_inner_x - PLATE_A_THK;
-    color(PLATE_C)
+    color(PLATE_A_C)
         translate([x0, y_center - PLATE_W/2, z_center - PLATE_H/2])
             cube([PLATE_A_THK, PLATE_W, PLATE_H]);
 }
 
 module plate_b(stretcher_end_x, y_center, z_center, side) {
     x0 = (side > 0) ? stretcher_end_x - PLATE_B_THK : stretcher_end_x;
-    color(PLATE_C)
+    color(PLATE_B_C)
         translate([x0, y_center - PLATE_W/2, z_center - PLATE_H/2])
             cube([PLATE_B_THK, PLATE_W, PLATE_H]);
 }
@@ -324,27 +329,23 @@ module long_stretcher(y_center, z_str, is_top) {
 module angle_ledger(y_center, z_str, y_dir) {
     L = STRETCHER_END_RIGHT - STRETCHER_END_LEFT;
 
-    // Vertical leg: TUBE/2 inward of stretcher's inner Y face.
-    // Sits against the upper portion of the tube's inner side wall.
-    // FRONT_Y is negative; front stretcher's inner-toward-center face is at
-    // FRONT_Y + TUBE/2 (positive direction). For BACK stretcher, inner face
-    // is at BACK_Y - TUBE/2. We want angle_inner_y on the *interior* side.
+    // y_dir points INBOARD (toward stand center): +1 for the FRONT stretcher
+    // (inboard = +Y), -1 for the BACK stretcher (inboard = -Y).
+    inboard_face_y = y_center + y_dir * TUBE/2;   // tube's interior side face
+    tube_top       = z_str + TUBE/2;
 
-    inner_face_y = y_center + (-y_dir) * TUBE/2;  // Y of the tube's interior face
-
-    // Vertical leg: thin slab against inner face, top of leg flush with tube top
-    color(STEEL)
-        translate([STRETCHER_END_LEFT,
-                   inner_face_y + (y_dir > 0 ? 0 : -ANGLE_THK),
-                   z_str + TUBE/2 - ANGLE_LEG])
+    // Vertical leg: thin slab welded to the inboard side wall, upper portion,
+    // top flush with the tube top.
+    vy = (y_dir > 0) ? inboard_face_y : inboard_face_y - ANGLE_THK;
+    color(ANGLE_C)
+        translate([STRETCHER_END_LEFT, vy, tube_top - ANGLE_LEG])
             cube([L, ANGLE_THK, ANGLE_LEG]);
 
-    // Horizontal leg: lies on top of vertical leg, extends ANGLE_LEG inward
-    // top of horizontal leg flush with tube top.
-    color(STEEL)
-        translate([STRETCHER_END_LEFT,
-                   inner_face_y + (y_dir > 0 ? 0 : -ANGLE_LEG),
-                   z_str + TUBE/2 - ANGLE_THK])
+    // Horizontal leg: extends ANGLE_LEG inboard from the face, top flush with
+    // the tube top (plywood drops onto it, flush with the steel top).
+    hy = (y_dir > 0) ? inboard_face_y : inboard_face_y - ANGLE_LEG;
+    color(ANGLE_C)
+        translate([STRETCHER_END_LEFT, hy, tube_top - ANGLE_THK])
             cube([L, ANGLE_LEG, ANGLE_THK]);
 }
 
@@ -406,7 +407,7 @@ module wood_clip(x_center, y_center, y_dir, anchored) {
     hole_y = inner_face_y + y_dir * 0.85;              // hole near inboard end
 
     // welded tab with a slotted (or round, if anchored) hole
-    color(PLATE_C)
+    color(CLIP_C)
         difference() {
             translate([x_center - WOODCLIP_W/2, y_min, z0])
                 cube([WOODCLIP_W, WOODCLIP_PROJ, WOODCLIP_THK]);

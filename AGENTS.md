@@ -79,6 +79,17 @@ design decision:
   Gravity holds plywood down; no fasteners.
 - Cable X on back chosen over tube diagonal — aesthetic + lighter; tube
   remains an option.
+- **Back face built OPEN initially — no rear brace (no cable X, no Z-tube)
+  at first.** Owner's call after analysis: the back is the low-load,
+  lightly-excited plane and the bedslinger force is only ~3 lbf, so a
+  moment frame likely suffices. Plan: build open-back, do a tap test, add
+  the cable X *only if* it wobbles. **Critical: the 4 cable-anchor pads ARE
+  welded to the rear corner legs during initial fabrication (before
+  paint/powder)** so adding cables later is a no-welding, bolt-on job —
+  defer the cables, never the anchors. Anchors are tiny (trivial load,
+  size for looks); a flat tab must be **edge-welded so its hole clears the
+  tube**, or use a weld-on pad eye / D-ring. End-frame diagonals are still
+  kept (owner wants the 45° practice + they brace the bedslinger plane).
 - Tube diagonals on end frames chosen over cables — A1 bedslinger loads
   the end-frame plane heavily, cables would be marginal there.
 - End-frame diagonal in the **lower bay** (not upper). **True 45°**, single

@@ -23,6 +23,10 @@ $fn = 24;
 // === USER-EDITABLE: TOGGLES ===
 SHOW_WOOD_TOP    = true;
 SHOW_FLOOR_REF   = true;
+SHOW_CABLES      = true;   // cables are DEFERRED in the real build; the weld-on
+                           // anchors always show. Set false for the open-back
+                           // initial build.
+SHOW_WOOD_MOUNTS = true;   // wood-top hold-down clips + screws/washers
 
 // === USER-EDITABLE: DIMENSIONS ===
 // Wood top IS drawn (for proportion); plywood shelves are NOT (cut to fit).
@@ -338,18 +342,83 @@ module angle_ledger(y_center, z_str, y_dir) {
             cube([L, ANGLE_LEG, ANGLE_THK]);
 }
 
-// === CABLE X (back) ==========================================================
-// At the BACK FACE of the back legs (Y = BACK_Y + TUBE/2), so the cables sit
-// behind the steel frame plane.
+// === CABLE X (back) + WELD-ON ANCHORS ========================================
+// The 4 cable anchors are welded to the rear corner legs at FABRICATION
+// (before paint), even though the cables are DEFERRED (see DESIGN.md). Each
+// anchor is a small 3/16" tab EDGE-welded so it projects off the back face
+// (+Y) with its hole standing clear of the tube; a shackle / turnbuckle jaw
+// pins through it (hole axis along X). The cable X, when fitted, terminates
+// at these holes.
+ANCHOR_THK    = PLATE_B_THK;                          // 3/16" tab
+ANCHOR_PROJ   = 1.0;                                  // stand-off from back face (+Y)
+ANCHOR_HT     = 0.75;                                 // tab height (Z)
+ANCHOR_HOLE   = 0.40;                                 // ~ for a 1/4" shackle pin
+ANCHOR_BACK_Y = BACK_Y + TUBE/2;                      // back face of the back legs
+ANCHOR_HOLE_Y = ANCHOR_BACK_Y + ANCHOR_PROJ - 0.30;  // hole near the free end
+ANCHOR_Z      = [LEG_BOTTOM_Z, FRAME_TOP_Z - TUBE];  // bottom & top cable corners
+
+module cable_anchor(x, z) {
+    color(PLATE_C)
+        translate([x - ANCHOR_THK/2, ANCHOR_BACK_Y, z - ANCHOR_HT/2])
+            difference() {
+                cube([ANCHOR_THK, ANCHOR_PROJ, ANCHOR_HT]);
+                translate([-0.01, ANCHOR_PROJ - 0.30, ANCHOR_HT/2])
+                    rotate([0, 90, 0])
+                        cylinder(d=ANCHOR_HOLE, h=ANCHOR_THK + 0.02);
+            }
+}
+
+module cable_anchors() {
+    for (x = [LEFT_X, RIGHT_X], z = ANCHOR_Z) cable_anchor(x, z);
+}
 
 module cable_x_back() {
-    cable_y = BACK_Y + TUBE/2;
-    bl = [LEFT_X,  cable_y, LEG_BOTTOM_Z];
-    tl = [LEFT_X,  cable_y, FRAME_TOP_Z - TUBE];
-    br = [RIGHT_X, cable_y, LEG_BOTTOM_Z];
-    tr = [RIGHT_X, cable_y, FRAME_TOP_Z - TUBE];
+    bl = [LEFT_X,  ANCHOR_HOLE_Y, LEG_BOTTOM_Z];
+    tl = [LEFT_X,  ANCHOR_HOLE_Y, FRAME_TOP_Z - TUBE];
+    br = [RIGHT_X, ANCHOR_HOLE_Y, LEG_BOTTOM_Z];
+    tr = [RIGHT_X, ANCHOR_HOLE_Y, FRAME_TOP_Z - TUBE];
     rod_between(bl, tr, CABLE_DIA, CABLE_C);
     rod_between(br, tl, CABLE_DIA, CABLE_C);
+}
+
+// === WOOD-TOP HOLD-DOWN CLIPS ================================================
+// Small steel tabs welded to the inboard side of the TOP long stretchers,
+// top face flush with the tube top. A pan-head screw runs UP through the
+// slotted hole + a fender washer into a threaded insert in the wood, clamping
+// it down; the Y-slot lets the wood expand/contract seasonally. ONE clip is
+// the fixed ANCHOR (round hole, front-center); all others are slotted in Y.
+// Modeled: the welded tab (with slot/hole) + the fender washer + screw head.
+WOODCLIP_W    = 1.25;    // tab width (X)
+WOODCLIP_PROJ = 1.5;     // tab projection inboard (Y) from stretcher inner face
+WOODCLIP_THK  = 3/16;    // tab thickness (Z)
+WOODCLIP_HOLE = 7/16;    // screw clearance (for a 3/8" screw)
+WOODCLIP_SLOT = 0.5;     // extra Y travel for wood movement
+WASHER_DIA    = 1.0;     // fender washer
+
+module wood_clip(x_center, y_center, y_dir, anchored) {
+    inner_face_y = y_center + y_dir * TUBE/2;          // inboard face of stretcher
+    y_min  = (y_dir > 0) ? inner_face_y : inner_face_y - WOODCLIP_PROJ;
+    z0     = FRAME_TOP_Z - WOODCLIP_THK;               // top flush with tube top
+    hole_y = inner_face_y + y_dir * 0.85;              // hole near inboard end
+
+    // welded tab with a slotted (or round, if anchored) hole
+    color(PLATE_C)
+        difference() {
+            translate([x_center - WOODCLIP_W/2, y_min, z0])
+                cube([WOODCLIP_W, WOODCLIP_PROJ, WOODCLIP_THK]);
+            if (anchored)
+                translate([x_center, hole_y, z0 - 0.01])
+                    cylinder(d=WOODCLIP_HOLE, h=WOODCLIP_THK + 0.02);
+            else
+                hull() for (dy = [-WOODCLIP_SLOT/2, WOODCLIP_SLOT/2])
+                    translate([x_center, hole_y + dy, z0 - 0.01])
+                        cylinder(d=WOODCLIP_HOLE, h=WOODCLIP_THK + 0.02);
+        }
+    // fender washer (flush under tab) + pan-head screw, threading UP into wood
+    color(BOLT_C) {
+        translate([x_center, hole_y, z0 - 0.06]) cylinder(d=WASHER_DIA, h=0.06);
+        translate([x_center, hole_y, z0 - 0.20]) cylinder(d=0.60, h=0.14);
+    }
 }
 
 // === WOOD TOP ================================================================
@@ -387,7 +456,16 @@ for (z = [Z_MID_STR, Z_BOT_STR]) {
     angle_ledger(BACK_Y,  z, -1);
 }
 
-cable_x_back();
+cable_anchors();                 // welded at fab — always present
+if (SHOW_CABLES) cable_x_back(); // cables are deferred in the real build
+
+// Wood-top hold-down clips on the front & back TOP stretchers.
+// Front-center clip is the fixed anchor (round hole); the rest are Y-slotted.
+if (SHOW_WOOD_MOUNTS)
+    for (x = [-FRAME_LENGTH/4, 0, FRAME_LENGTH/4]) {
+        wood_clip(x, FRONT_Y, +1, x == 0);
+        wood_clip(x, BACK_Y,  -1, false);
+    }
 
 if (SHOW_WOOD_TOP)  wood_top();
 if (SHOW_FLOOR_REF) floor_ref();
@@ -413,8 +491,16 @@ if (SHOW_FLOOR_REF) floor_ref();
 //   Leg back-wall relief:  drill 1/2" hole through leg back wall behind each
 //                          tapped plate-A hole (24 holes total) for bolt-tip
 //                          clearance — DO NOT TAP through the tube wall.
-//   Cable:               ~12 ft of 1/8" stainless 7×19 aircraft cable
-//   Cable hardware:        4 swage eye terminations + 2 turnbuckles + 4 eye plates
+//   Cable anchors:         4 × 3/16" tabs EDGE-welded to the rear corner legs at
+//                            fabrication (hole stands off the tube, ~1/4" pin) —
+//                            welded even though cables are DEFERRED (see DESIGN.md)
+//   Cable (deferred):    ~12 ft of 1/8" stainless 7×19 cable + 4 eye terminals
+//                            + 2 jaw-jaw turnbuckles + 2 shackles — add only if
+//                            post-build testing shows wobble
+//   Wood-top hold-downs:   6 × ~1.25"×1.5"×3/16" steel clips welded to the top
+//                            stretchers (front-center = fixed round-hole anchor,
+//                            rest Y-slotted) + 6 × 3/8"-16 threaded inserts in
+//                            wood + pan-head screws + 1" fender washers
 //   Wood top:             48"×25.75"×1-3/16" red oak/white oak/maple (drawn for
 //                            reference; cut to fit — drives the steel footprint)
 //   Plywood shelves:       cut to fit after the frame is built (NOT modeled;

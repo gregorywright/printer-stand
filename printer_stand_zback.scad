@@ -32,6 +32,7 @@ $fn = 24;
 // === USER-EDITABLE: TOGGLES ===
 SHOW_WOOD_TOP    = true;
 SHOW_FLOOR_REF   = true;
+SHOW_WOOD_MOUNTS = true;   // wood-top hold-down clips + screws/washers
 
 // === USER-EDITABLE: DIMENSIONS ===
 // Wood top IS drawn (for proportion); plywood shelves are NOT (cut to fit).
@@ -384,6 +385,46 @@ module zback_diagonals() {
                  [x_right, y, lower_bot_z]);
 }
 
+// === WOOD-TOP HOLD-DOWN CLIPS ================================================
+// Small steel tabs welded to the inboard side of the TOP long stretchers,
+// top face flush with the tube top. A pan-head screw runs UP through the
+// slotted hole + a fender washer into a threaded insert in the wood, clamping
+// it down; the Y-slot lets the wood expand/contract seasonally. ONE clip is
+// the fixed ANCHOR (round hole, front-center); all others are slotted in Y.
+// Modeled: the welded tab (with slot/hole) + the fender washer + screw head.
+WOODCLIP_W    = 1.25;    // tab width (X)
+WOODCLIP_PROJ = 1.5;     // tab projection inboard (Y) from stretcher inner face
+WOODCLIP_THK  = 3/16;    // tab thickness (Z)
+WOODCLIP_HOLE = 7/16;    // screw clearance (for a 3/8" screw)
+WOODCLIP_SLOT = 0.5;     // extra Y travel for wood movement
+WASHER_DIA    = 1.0;     // fender washer
+
+module wood_clip(x_center, y_center, y_dir, anchored) {
+    inner_face_y = y_center + y_dir * TUBE/2;          // inboard face of stretcher
+    y_min  = (y_dir > 0) ? inner_face_y : inner_face_y - WOODCLIP_PROJ;
+    z0     = FRAME_TOP_Z - WOODCLIP_THK;               // top flush with tube top
+    hole_y = inner_face_y + y_dir * 0.85;              // hole near inboard end
+
+    // welded tab with a slotted (or round, if anchored) hole
+    color(PLATE_C)
+        difference() {
+            translate([x_center - WOODCLIP_W/2, y_min, z0])
+                cube([WOODCLIP_W, WOODCLIP_PROJ, WOODCLIP_THK]);
+            if (anchored)
+                translate([x_center, hole_y, z0 - 0.01])
+                    cylinder(d=WOODCLIP_HOLE, h=WOODCLIP_THK + 0.02);
+            else
+                hull() for (dy = [-WOODCLIP_SLOT/2, WOODCLIP_SLOT/2])
+                    translate([x_center, hole_y + dy, z0 - 0.01])
+                        cylinder(d=WOODCLIP_HOLE, h=WOODCLIP_THK + 0.02);
+        }
+    // fender washer (flush under tab) + pan-head screw, threading UP into wood
+    color(BOLT_C) {
+        translate([x_center, hole_y, z0 - 0.06]) cylinder(d=WASHER_DIA, h=0.06);
+        translate([x_center, hole_y, z0 - 0.20]) cylinder(d=0.60, h=0.14);
+    }
+}
+
 // === WOOD TOP ================================================================
 // The wood top IS drawn so proportions read in the model. Plywood shelves are
 // NOT drawn (cut to fit after the frame is built); the angle-iron ledgers
@@ -421,6 +462,14 @@ for (z = [Z_MID_STR, Z_BOT_STR]) {
 
 zback_diagonals();
 
+// Wood-top hold-down clips on the front & back TOP stretchers.
+// Front-center clip is the fixed anchor (round hole); the rest are Y-slotted.
+if (SHOW_WOOD_MOUNTS)
+    for (x = [-FRAME_LENGTH/4, 0, FRAME_LENGTH/4]) {
+        wood_clip(x, FRONT_Y, +1, x == 0);
+        wood_clip(x, BACK_Y,  -1, false);
+    }
+
 if (SHOW_WOOD_TOP)  wood_top();
 if (SHOW_FLOOR_REF) floor_ref();
 
@@ -453,6 +502,10 @@ if (SHOW_FLOOR_REF) floor_ref();
 //                            reference; cut to fit — drives the steel footprint)
 //   Plywood shelves:       cut to fit after the frame is built (NOT modeled;
 //                            drop onto the angle ledgers, gravity holds them)
+//   Wood-top hold-downs:   6 × ~1.25"×1.5"×3/16" steel clips welded to the top
+//                            stretchers (front-center = fixed round-hole anchor,
+//                            rest Y-slotted) + 6 × 3/8"-16 threaded inserts in
+//                            wood + pan-head screws + 1" fender washers
 //
 // (NO cable hardware — replaced by Z-tube diagonals.)
 // =======================================================================

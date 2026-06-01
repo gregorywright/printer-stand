@@ -89,16 +89,39 @@ more expensive on tube.
 
 ---
 
-## Cable-X variant ONLY (`printer_stand.scad`)
+## Back bracing — open-back build (current plan)
 
-Skip this entire section if building the Z-back variant.
+The current plan builds the back **open** (no cable X, no Z-tube) and adds
+the cable X later *only if* post-build testing shows wobble (see `DESIGN.md`).
+That splits this into two buys: the **anchors** (made/welded now, part of the
+base build) and the **cable chain** (deferred).
 
-- [ ] **1/8" stainless 7×19 aircraft cable**, ~12 ft (two diagonals + termination overhead)
-- [ ] **Swage eye terminations**, stainless, qty **4**
-- [ ] **Stainless turnbuckles**, jaw-and-jaw, 3/16" or 1/4" stock, qty **2**
-- [ ] **Eye plates** for legs, qty **4** — small steel pieces welded as anchor points
+### Anchors — fabricate & weld during initial build
 
-**Cable hardware subtotal:** ~$80–$120
+- [ ] **4 cable anchors** on the rear corner legs. Either:
+  - **DIY (≈$0):** cut from the 3/16" flat-bar offcut, ~3/4–1" wide, drill a
+    hole for a 1/4" shackle pin, **edge-weld so the hole stands clear of the
+    tube** (a hole in a tab laid flat against the tube is blocked). OR
+  - **Buy (~$10–20):** weld-on pad eye or weld-on D-ring (search "weld on pad
+    eye" or "weld on D ring tie down"), qty 4. Trailer-rated ones are wildly
+    overkill; grind off any zinc plating before flux-core welding.
+- Load is trivial — size for looks/weldability, not strength. No swivel
+  needed (the shackle articulates). **Weld these on *before* paint/powder**
+  so adding cables later needs no welding.
+
+### Cable chain — deferred (buy only if testing shows wobble)
+
+Skip unless/until you decide to install the X-wing.
+
+- [ ] **1/8" stainless 7×19 aircraft cable**, ~12 ft (two diagonals + overhead)
+- [ ] **Cable eye terminals**, stainless, qty **4** — mechanical/swageless
+  (e.g. Hayn Hi-MOD, no swage tool needed) or swaged eyes
+- [ ] **Stainless turnbuckles**, jaw-and-jaw, 1/4" stock, qty **2**
+- [ ] **Stainless shackles**, ~1/4" pin, qty **2** — connect each cable's
+  non-turnbuckle end to its anchor
+- [ ] *(Optional)* cable cutter — borrow if possible (see `TOOLS.md`)
+
+**Deferred cable-chain subtotal:** ~$80–$120
 
 ---
 
@@ -142,10 +165,11 @@ Pick one path:
 | Bolts + washers | ~$15 | ~$15 |
 | Levelers + M12 tap | ~$40 | ~$40 |
 | Wood-top mounting hardware | ~$10 | ~$10 |
-| Cable hardware | $80–$120 | — |
+| Back-brace anchors (welded at fab) | ~$0–20 | ~$0–20 |
 | Finishing (DIY) | ~$50 | ~$50 |
 | Floor pads | $0 (rubber-base feet) | $0 |
-| **Total parts cost** | **~$425–$625** | **~$345–$505** |
+| **Base build (open back)** | **~$350–$530** | **~$345–$505** |
+| Cable X chain (*deferred* add-on, only if needed) | +$80–$120 | n/a |
 
 If powder-coating instead of rattle-can, add ~$100.
 

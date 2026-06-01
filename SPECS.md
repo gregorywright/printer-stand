@@ -58,9 +58,9 @@ unless explicitly renegotiated. Soft design choices live in `DESIGN.md`.
 | Leveler studs | M12×1.75 |
 | Leveler foot | 2" (50mm) swivel base, 20mm tall, 50mm stud, rubber/nylon base (Luomorgo or similar) |
 | Leveler foot-cap | 1.5"×1.5"×3/8" steel plate, welded on the leg end (cap), tapped M12×1.75 (~5 threads of engagement) |
-| Cable (back X) | 1/8" stainless 7×19 aircraft cable |
-| Cable terminations | Swaged eye ends, 2 turnbuckles (jaw-and-jaw stainless) |
-| Cable anchors | Welded eye plates on rear face of corner legs |
+| Cable (back X) — *deferred* | 1/8" stainless 7×19 aircraft cable. Not installed at first; added only if post-build testing shows wobble (see `DESIGN.md`) |
+| Cable terminations — *deferred* | 4 mechanical/swageless eye terminals (e.g. Hayn Hi-MOD — no swage tool) or swaged eyes; 2 turnbuckles (jaw-and-jaw stainless); 2 stainless shackles (~1/4" pin) |
+| Cable anchors — *welded at fab* | 4 anchors on rear face of corner legs, welded during initial fabrication (before finish). Small mild-steel tab **edge-welded so the hole stands clear of the tube**, OR a weld-on pad eye / D-ring. Hole sized for a 1/4" shackle pin. Load is trivial (~10–30 lb functional, ~140 lb worst-case shove); size for looks/weldability, not strength — any decent welded tab carries thousands of lb. No swivel needed (the shackle articulates) |
 | Shelves | 3/4" plywood (or hardwood — woodworker's choice) |
 | Wood top | Hand-built by owner, **1-3/16" thick** (matches counter); red oak / white oak / hard maple |
 
@@ -90,7 +90,10 @@ unless explicitly renegotiated. Soft design choices live in `DESIGN.md`.
 - **Bolted:** all 6 long stretchers attach to end frames via flange plate
   pairs (**2 bolts per joint × 12 joints = 24 bolts total**). Bolts thread
   directly into tapped plate A — no separate nuts.
-- **Tensioned:** cable X on rear face only. Re-tension after first month of use.
+- **Tensioned (deferred):** cable X on rear face only — *not installed in the
+  initial build.* The 4 anchor pads are welded on at fabrication; the
+  cables/turnbuckles/shackles are added later only if testing shows wobble. If
+  installed, re-tension after first month of use.
 - **Resting:** plywood shelves drop onto angle iron ledgers. Gravity holds
   them down; no fasteners required for installation.
 

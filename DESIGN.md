@@ -88,6 +88,52 @@ it resists racking in one direction and goes slack the other way — frame
 flops. Two crossed cables guarantee that whichever way the frame tries to
 rack, *one* cable is in tension. Always.
 
+### Back bracing decision: build open, brace only if needed
+
+After working the numbers, the back brace was downgraded from "required" to
+"deferred insurance":
+
+- The back is the **low-racking-load plane** — the A1 bedslinger loads the
+  *end-frame* plane, not the back. And the bedslinger's peak inertial force
+  is only **~3 lbf** (≈1 kg moving bed × ~1 g). Force magnitude is a
+  non-issue; the only real risk is resonance, and that's conditional on the
+  open-back sway mode (rough SDOF estimate ~15–22 Hz) actually landing in
+  the printer's excitation band.
+- The stand is **~185 lb of steel** carrying a moving bed that's **<1% of
+  system mass**, so a moment frame (welded/bolted rectangles, no diagonal)
+  very likely suffices on the back — the same reason a big-tube desk is
+  rock-solid with no diagonals at all.
+
+**Plan:** build with an **OPEN back** — no cable X, no Z-tube. Keep the
+end-frame diagonals (owner wants the 45° practice, and they brace the plane
+the bedslinger actually hits). After assembly, do a **tap test**: nudge the
+top sideways and read the ring-down with a phone accelerometer app. If the
+open-back sway mode is comfortably above ~25 Hz and damps out in a cycle or
+two, leave the back open. If it visibly wobbles in use, add the cable X for
+that "wire X-wing" look.
+
+**Critical sequencing — weld the anchors now, defer only the cables.** Weld
+the 4 cable anchors onto the rear corner legs *during initial fabrication,
+before paint/powder,* even though the cables aren't installed. Welding
+anchors onto a finished frame later means grinding back the coating and
+re-finishing in place; welding them now is free. With anchors pre-welded,
+adding the X-wing later is a hand-tools-only job: hook swaged/mechanical
+cable eyes to the anchors through 2 turnbuckles + 2 shackles, then tension.
+
+**Anchor design.** The load is trivial (~10–30 lb functional pretension,
+~140 lb worst-case shove, vs. the 1/8" cable's ~1,700 lb break and a welded
+tab good for thousands), so size the anchor for looks and weldability, not
+strength. **No swivel needed** — the shackle articulates to the cable's
+diagonal. Either:
+
+- a small mild-steel tab **edge-welded so the hole stands proud of the
+  tube** — a hole drilled in a tab laid flat against the tube is blocked by
+  the tube, so the tab must project off the face; or
+- a bought **weld-on pad eye / D-ring** (grind off any zinc plating before
+  flux-core welding).
+
+Hole sized for a ~1/4" shackle pin.
+
 ## Knockdown joints
 
 Each long stretcher has a **1.5"-wide × {7.5" or 5"}** plate B welded

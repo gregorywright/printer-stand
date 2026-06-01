@@ -90,9 +90,6 @@ design decision:
   was dropped because it required hard-to-cut, non-45° miters.
 - H_MIDDLE = 23.75" gives 10" upper-bay clearance and 17.25" lower-bay
   clearance (fits 8" filament spools standing up).
-- Knee braces **kept** — welded between plate B's lower extension and the
-  underside of the stretcher tube, so they travel with the stretcher
-  assembly and preserve knockdown.
 - Flange-plate joints chosen over tube-in-tube sleeves — easier for a
   beginner welder, more forgiving on cut accuracy.
 - Levelers chosen over casters — rigidity priority. Caster conversion path

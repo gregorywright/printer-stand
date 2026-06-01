@@ -245,22 +245,45 @@ disassembly.
 
 ## Wood top mounting
 
-Solid hardwood at this depth moves ~1/4" across grain seasonally (summer
-humid → winter dry). Grain runs the 48" direction, so movement is in the Y
-(25.75") direction.
+The solid top moves cross-grain — across the 25.75" depth (Y), since the
+grain runs the 48" length. How much depends on species and the seasonal
+indoor moisture swing (ΔMC, in percentage points):
 
-**Anchor at front-center, float everywhere else.**
+    movement = 25.75" × C_T × ΔMC
 
-- One screw + washer through a normal-sized hole at the front-center attaches
-  the top firmly. Wood expands and contracts symmetrically front and rear
-  from this anchor.
-- All other attachments use **slotted holes** in the steel top stretchers
-  (slots oriented Y, ~3/8" long) with **fender washer + pan-head machine
-  screw** going up through the slot into a **threaded insert** in the wood.
-- The fender washer holds the wood down; the slot lets the screw migrate as
-  the wood breathes.
+Seattle's mild, humid, year-round-stable indoor climate gives a SMALL swing
+(~ΔMC 3–4: heated-dry winter ~8% → humid summer ~11–12%). Flat-sawn,
+worst case:
+
+| Species    | C_T     | Full-width move @ ΔMC 4 |
+|------------|---------|-------------------------|
+| Red oak    | 0.00369 | ~0.38"                  |
+| Hard maple | 0.00353 | ~0.36"                  |
+| Poplar     | 0.00289 | ~0.30"                  |
+
+So ~1/4"–3/8" full-width in Seattle (a continental climate at ΔMC 6 would
+exceed 1/2"). Quartersawn stock roughly halves it.
+
+**Anchor at front-center, float toward the back.**
+
+- One screw + washer through a NORMAL round hole at the front-center fixes
+  the top. Because the steel only supports the perimeter (front + back top
+  stretchers), the top can't be pinned mid-depth — so it grows/shrinks from
+  the front anchor *toward the back*, and the back clips carry essentially
+  the full cross-grain movement (it is NOT symmetric front/rear).
+- All other clips use **Y-slotted holes** with a **fender washer + pan-head
+  machine screw** going up through the slot into a **threaded insert** in the
+  wood.
+- Slot length: size for the movement across the ~20.25" stretcher span. At
+  ΔMC 4 (oak) that span moves ~0.30"; fitting the top at mid-season MC means
+  each back screw only needs ±~0.15" of travel. The SCAD model uses a
+  ~15/16"-long slot (7/16" hole + 0.5" travel ≈ ±0.28" of screw travel) —
+  about 2× margin for Seattle and forgiving of build-MC error. Minimum useful
+  length is ~3/4"; a 3/8" slot gives almost no travel and would crack the top.
+- The fender washer (1" OD) holds the wood down wherever the screw sits; the
+  slot lets the screw migrate as the wood breathes.
 - Threaded inserts (E-Z Lok or similar, 3/8"-16) let the top come off cleanly
-  for refinishing.
+  for refinishing. ACCLIMATE the wood to the room before final fitting.
 
 ## Height adjustment
 

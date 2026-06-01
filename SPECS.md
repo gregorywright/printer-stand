@@ -33,9 +33,13 @@ unless explicitly renegotiated. Soft design choices live in `DESIGN.md`.
   bottoms after dry-fit). The swivel feet (set mid-range) absorb residual
   build error and floor flatness; shims at the wood-to-steel interface make
   the final fine match (±1/4").
-- **Wood movement.** A solid hardwood top of this depth moves ~1/4" across
-  grain seasonally. The mounting system must allow this movement without
-  cracking the top. (Slotted holes + fender washers; anchor at one point.)
+- **Wood movement.** The solid top moves cross-grain — across the 25.75" (Y)
+  depth, since grain runs the 48" length. Seattle's mild, humid, year-round-
+  stable indoor climate gives a SMALL seasonal swing (~ΔMC 3–4 points):
+  ~1/4"–3/8" full-width for oak, less for poplar. (A continental climate at
+  ΔMC 6 would exceed 1/2".) The mounting must allow this without cracking the
+  top: Y-slotted holes + fender washers, with a single fixed anchor point.
+  See `DESIGN.md` for the calculation and slot sizing.
 - **Rigidity.** Stand must not visibly wobble while a Bambu A1 (bedslinger,
   front-back motion) prints at fast speeds.
 - **AMS 2 Pro side-mount only.** Ceiling has pipes; AMS cannot stack on top

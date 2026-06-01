@@ -48,6 +48,36 @@ more expensive on tube.
 
 ---
 
+## Practice stock (skills warm-up — NOT part of the build)
+
+Grab these as cheap **drops/remnants** (sold by the pound) on the same steel-
+yard trip, to practice welding, cutting, and tapping before you touch the
+real sticks. Skill-building only — we are **not** switching the build to
+thinner tube (see `DESIGN.md`).
+
+- [ ] **1.5"×1.5"×0.120" tube** — ~8–12 ft of drops. Cut into ~4–6" coupons
+  for 90° corner/T joints and **45° miters**, and to dial in heat on your
+  REAL wall thickness (the key burn-through calibration).
+- [ ] **14ga square tube** (~0.065–0.083" wall) — ~6 ft. "Hard mode" heat
+  control: if you can weld this without blowing through, 0.120" feels easy.
+  Practice only; confirm the actual wall when buying.
+- [ ] **3/8" flat bar, 1.5" wide** — ~2 ft. Tap **3/8"-16** (plate A) and
+  **M12×1.75** (foot-cap), and practice the **3/8"-plate-to-tube fillet** (the
+  hardest real weld) + capping a tube end. Buy extra so you can afford to
+  break a tap.
+- [ ] **3/16" flat bar, 1.5" wide** — ~1.5 ft. Drill 7/16" clearance holes;
+  weld plate B to a tube END; cut + **edge-weld a cable-anchor tab** and drill
+  its hole.
+- [x] **3/4"×3/4"×1/8" angle** — already have ~3 ft. Practice welding thin
+  angle to tube + drilling the shelf-screw holes.
+
+**At the yard:** use the drop rack; bring a **magnet** (mild steel only —
+skip galvanized/painted/oily); match the build wall (**0.120"**) for the
+calibration coupons. Already on hand: taps (metric + imperial), tap drills,
+and cutting fluid.
+
+---
+
 ## Welding consumables (both variants)
 
 - [ ] **Flux-core wire**, E71T-11, 0.030" diameter, **2-lb spool**

@@ -60,6 +60,9 @@ BOLT_OFFSET    = 1.75;     // bolt center distance from stretcher centerline
 // Angle iron ledgers (plywood shelves drop onto these)
 ANGLE_LEG     = 0.75;      // each leg of the angle is 3/4"
 ANGLE_THK     = 1/8;
+PLY_THK           = 23/32; // nominal 3/4" plywood, actual ~23/32" (sets ledger inset)
+SHELF_SCREW_PITCH = 6;     // wood-screw hold-down spacing along the ledger (X)
+SHELF_SCREW_DIA   = 3/16;  // clearance hole for shelf hold-down screws
 
 H_BOTTOM    = 5;           // top of bottom-shelf cross-tube, off floor
 H_MIDDLE    = 23.75;       // top of middle-shelf cross-tube — ~10.56" upper-bay clear
@@ -327,20 +330,32 @@ module angle_ledger(y_center, z_str, y_dir) {
     // (inboard = +Y), -1 for the BACK stretcher (inboard = -Y).
     inboard_face_y = y_center + y_dir * TUBE/2;   // tube's interior side face
     tube_top       = z_str + TUBE/2;
+    support_z      = tube_top - PLY_THK;          // plywood underside = top of
+                                                  // horizontal leg, INSET DOWN
+                                                  // so the ply TOP finishes
+                                                  // flush with the tube top.
 
-    // Vertical leg: thin slab welded to the inboard side wall, upper portion,
-    // top flush with the tube top.
+    // Vertical leg: thin slab welded to the inboard side wall, hanging down
+    // from the support level (weld length below the plywood line).
     vy = (y_dir > 0) ? inboard_face_y : inboard_face_y - ANGLE_THK;
     color(ANGLE_C)
-        translate([STRETCHER_END_LEFT, vy, tube_top - ANGLE_LEG])
+        translate([STRETCHER_END_LEFT, vy, support_z - ANGLE_LEG])
             cube([L, ANGLE_THK, ANGLE_LEG]);
 
-    // Horizontal leg: extends ANGLE_LEG inboard from the face, top flush with
-    // the tube top (plywood drops onto it, flush with the steel top).
+    // Horizontal leg: top at support_z (plywood rests here), extends ANGLE_LEG
+    // inboard. Plywood is dimensionally stable, so it's held with wood screws
+    // up through holes every ~SHELF_SCREW_PITCH (round holes, no slots).
     hy = (y_dir > 0) ? inboard_face_y : inboard_face_y - ANGLE_LEG;
     color(ANGLE_C)
-        translate([STRETCHER_END_LEFT, hy, tube_top - ANGLE_THK])
-            cube([L, ANGLE_LEG, ANGLE_THK]);
+        difference() {
+            translate([STRETCHER_END_LEFT, hy, support_z - ANGLE_THK])
+                cube([L, ANGLE_LEG, ANGLE_THK]);
+            for (x = [STRETCHER_END_LEFT + SHELF_SCREW_PITCH/2 :
+                      SHELF_SCREW_PITCH : STRETCHER_END_RIGHT])
+                translate([x, inboard_face_y + y_dir*ANGLE_LEG/2,
+                           support_z - ANGLE_THK - 0.01])
+                    cylinder(d=SHELF_SCREW_DIA, h=ANGLE_THK + 0.02);
+        }
 }
 
 // === CABLE X (back) + WELD-ON ANCHORS ========================================
@@ -485,7 +500,9 @@ if (SHOW_FLOOR_REF) floor_ref();
 //   Plate B (clearance):  12 × 1.5"×5"×3/16"  (drilled ~7/16", 2 holes per plate)
 //   Foot-cap plates:       4 × 1.5"×1.5"×3/8" steel, welded on leg ends (cap),
 //                            tapped M12×1.75 for the leveler studs
-//   Angle iron ledgers:    4 × 39.875" of 3/4"×3/4"×1/8" angle
+//   Angle iron ledgers:    4 × 39.875" of 3/4"×3/4"×1/8" angle (horizontal leg
+//                            inset ~23/32" below tube top; drilled for shelf
+//                            screws every ~6")
 //   Bolts:                24 × 3/8"-16, ~1.0" long, hex head + flat washer
 //   Levelers:              4 × M12×1.75 swivel feet, 2" (50mm) rubber base
 //                            (20mm tall), 50mm stud (Luomorgo or similar)
@@ -505,5 +522,6 @@ if (SHOW_FLOOR_REF) floor_ref();
 //   Wood top:             48"×25.75"×1-3/16" red oak/white oak/maple (drawn for
 //                            reference; cut to fit — drives the steel footprint)
 //   Plywood shelves:       cut to fit after the frame is built (NOT modeled;
-//                            drop onto the angle ledgers, gravity holds them)
+//                            drop into the ledger recess, ply TOP flush with
+//                            tube top; wood-screwed up through the ledger ~6")
 // =======================================================================

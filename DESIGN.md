@@ -226,22 +226,24 @@ the inboard top edge of the front and back long stretchers (bottom and
 middle shelf levels only).
 
 - Vertical leg of the angle is welded to the inboard side wall of the
-  stretcher tube. Horizontal leg extends inward.
-- Top of horizontal leg is **flush with the top of the stretcher tube**, so
-  the plywood top sits flush with the steel tube top.
+  stretcher tube; the horizontal leg extends inward and carries the plywood.
+- Top of the horizontal leg is **inset DOWN by the plywood thickness
+  (~23/32" for nominal 3/4" ply)**, so the plywood drops into the recess and
+  its TOP finishes flush with the steel tube top.
 - Plywood is sized 40.875" × 17.25" × 3/4" — 1/16" clearance per side
   in X (between end-frame inner faces), and bridges Y from the inner edge
   of the front angle to the inner edge of the back angle.
 - **No angle on the end-frame cross-tubes.** 3/4" plywood spans 17.25"
   with no center support without meaningful sag, even under filament-spool
   loading. The end-frame tubes just bound the rectangle.
-- **No fasteners required** — gravity holds the plywood down. Optional:
-  a screw at each plywood corner into a pre-drilled hole in the angle, if
-  shelves rattle.
+- **Screwed down, not gravity-held.** Plywood is dimensionally stable (it
+  doesn't move seasonally like the solid top), so no slots are needed: drill
+  clearance holes in the horizontal leg every ~6" and run wood screws up into
+  the plywood underside.
 
 Knockdown is preserved: angle ledgers are welded to the long stretchers,
-so they travel with the stretcher when bolted on. Plywood lifts out for
-disassembly.
+so they travel with the stretcher when bolted on. Back the screws out and
+the plywood lifts out for disassembly.
 
 ## Wood top mounting
 

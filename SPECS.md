@@ -98,8 +98,9 @@ unless explicitly renegotiated. Soft design choices live in `DESIGN.md`.
   initial build.* The 4 anchor pads are welded on at fabrication; the
   cables/turnbuckles/shackles are added later only if testing shows wobble. If
   installed, re-tension after first month of use.
-- **Resting:** plywood shelves drop onto angle iron ledgers. Gravity holds
-  them down; no fasteners required for installation.
+- **Screwed:** plywood shelves drop into the angle-iron ledger recess (ply
+  top flush with the stretcher tube top) and are held with wood screws up
+  through holes in the ledger every ~6". Plywood is stable, so no slots.
 
 ### Flange-plate joint geometry
 
@@ -133,16 +134,20 @@ keeps the joint geometry forgiving to bolt-length variation.
 
 ### Angle iron ledger geometry
 
-- 3/4" × 3/4" × 1/8" angle, run continuous along each long stretcher's
-  inboard top edge (between flange plates).
-- Vertical leg welded to the inboard side wall of the stretcher tube,
-  upper portion. Horizontal leg extends inward (toward stand center).
-- Top of horizontal leg is **flush with the top of the stretcher tube** —
-  3/4" plywood drops onto it and the plywood top sits flush with the steel
-  tube top.
+- 3/4" × 3/4" × 1/8" angle, run continuous (full length) along each long
+  stretcher's inboard edge between the flange plates — simplest weld and
+  continuous plywood support.
+- Vertical leg welded to the inboard side wall of the stretcher tube;
+  horizontal leg extends inward (toward stand center) and carries the plywood.
+- Top of the horizontal leg is **inset DOWN by the plywood thickness
+  (~23/32" for nominal 3/4" ply)** so the plywood drops into the recess and
+  its TOP finishes flush with the steel tube top.
+- Plywood hold-down: plywood is dimensionally stable, so **no slots** — drill
+  clearance holes in the horizontal leg every ~6" and run wood screws up into
+  the plywood underside.
 - Only on bottom and middle stretchers (not top — wood top mounts
   differently). Only on long stretchers (not end-frame cross-tubes — 3/4"
-  plywood spans the 21" depth without sag).
+  plywood spans the depth without sag).
 
 ## Frame member count
 

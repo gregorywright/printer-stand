@@ -73,10 +73,13 @@ design decision:
   2-bolt joint moment resistance. The lever arm between top-joint bolts
   already gives ~50:1 safety factor for top-joint racking.
 - **Plywood shelves drop onto 3/4"x3/4"x1/8" angle iron ledgers** welded to
-  the inboard top edge of front and back long stretchers (bottom and middle
-  shelf levels). Plywood top flush with steel tube top. No angle on
-  end-frame cross-tubes (3/4" ply spans the 17.25" depth without sag).
-  Gravity holds plywood down; no fasteners.
+  the inboard edge of front and back long stretchers (bottom and middle
+  shelf levels), full length. The horizontal leg is **INSET DOWN by the
+  plywood thickness (~23/32")** so the plywood TOP finishes flush with the
+  steel tube top. No angle on end-frame cross-tubes (3/4" ply spans the
+  depth without sag). Plywood is dimensionally stable, so it's **screwed
+  down** (wood screws up through holes in the ledger every ~6") — not
+  gravity-held, and no slots.
 - Cable X on back chosen over tube diagonal — aesthetic + lighter; tube
   remains an option.
 - **Back face built OPEN initially — no rear brace (no cable X, no Z-tube)

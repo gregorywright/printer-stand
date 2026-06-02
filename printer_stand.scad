@@ -75,6 +75,7 @@ LEVELER_BASE     = 2.0;    // swivel base diameter (50mm)
 LEVELER_BASE_HT  = 0.8;    // swivel base height (20mm)
 LEVELER_STUD_DIA = 0.47;   // M12 stud (~12mm) — for drawing only
 LEVELER_RANGE    = 0.5;    // usable +/- foot travel (doc)
+FOOTCAP_THK      = 3/8;    // welded leg-end cap (1.5x1.5x3/8, tapped M12); part of LEVELER_HT
 
 CABLE_DIA    = 1/8;
 
@@ -125,6 +126,7 @@ ANCHOR_C  = [0.85, 0.15, 0.15];  // weld-on cable anchors (red)
 BOLT_C    = [0.15, 0.15, 0.18];  // bolts / screws / washers
 CABLE_C   = [0.85, 0.85, 0.88];  // tensioned cable
 LEVEL_C   = [0.18, 0.18, 0.20];  // leveler feet
+FOOTCAP_C = [0.15, 0.70, 0.70];  // welded leg-end foot-cap plate (teal)
 
 // === HELPERS =================================================================
 
@@ -208,14 +210,21 @@ module bolts_at_joint(stretcher_end_x, y_center, stretcher_z, side, is_top) {
     }
 }
 
-// === LEVELER =================================================================
+// === LEVELER + FOOT-CAP ======================================================
 module leveler(x, y) {
+    // Welded foot-cap plate (1.5x1.5x3/8) capping the leg-tube bottom; the M12
+    // stud taps into it. Its 3/8" is part of the LEVELER_HT lift — the leg
+    // tube bottom sits at LEG_BOTTOM_Z and the cap fills the 3/8" just below.
+    color(FOOTCAP_C)
+        translate([x - TUBE/2, y - TUBE/2, LEG_BOTTOM_Z - FOOTCAP_THK])
+            cube([TUBE, TUBE, FOOTCAP_THK]);
     color(LEVEL_C) {
         // rubber swivel base
         translate([x, y, 0]) cylinder(d=LEVELER_BASE, h=LEVELER_BASE_HT);
-        // M12 stud up to the leg-tube bottom
+        // M12 stud + jam-nut region, up to the cap underside
         translate([x, y, LEVELER_BASE_HT])
-            cylinder(d=LEVELER_STUD_DIA, h=LEG_BOTTOM_Z - LEVELER_BASE_HT);
+            cylinder(d=LEVELER_STUD_DIA,
+                     h=LEG_BOTTOM_Z - FOOTCAP_THK - LEVELER_BASE_HT);
     }
 }
 

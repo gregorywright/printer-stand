@@ -331,8 +331,9 @@ for fine adjustment only.
   compression, so that's far more than enough. (Chosen over a bought weld-in
   insert: pre-threaded weld-in feet that fit 1.5" square tube are scarce and
   ~$16 each; a tapped cap reuses a cheap M12 tap.)
-- **Nominal lift ~1.75".** The foot's 0.8" (20mm) rubber base plus the jam nut
-  set the minimum, so sizing the legs to ~1.75" keeps the *exposed* stud short
+- **Nominal lift ~1.75".** The foot's 0.8" (20mm) rubber base + jam nut + the
+  welded 3/8" foot-cap set the minimum, so sizing the legs to ~1.75" keeps the
+  *exposed* stud short
   (~0.2") for rigidity while leaving room to extend to ~2.5"+ if the frame
   comes out short. Coarse height error is taken out at the legs / wood top;
   the feet handle floor flatness and small residual.

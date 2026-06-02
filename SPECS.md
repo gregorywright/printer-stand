@@ -177,4 +177,11 @@ keeps the joint geometry forgiving to bolt-length variation.
 - Built in: garage
 - Used in: room adjacent to kitchen, low-ceiling (with overhead pipes)
 - Floor: tile, 12"×12" tiles
+- **Floor is out of level** — drops ~1/2" over the stand's 48" width
+  (≈0.44", ~7/16", across the 42.5" left-right foot span). Handled
+  ENTIRELY by the adjustable leveler feet (need only ±0.22" if centered,
+  well within travel). Do NOT trim legs to a floor's slope: this is a
+  knockdown stand that moves between locations and the end-frames are built
+  IDENTICAL — the feet re-level at each new floor. Re-check the front-back
+  (25.75") axis on site too.
 - Adjacent surface: kitchen counter — top must match its height exactly

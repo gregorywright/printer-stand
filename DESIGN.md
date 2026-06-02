@@ -315,6 +315,17 @@ short frame — a long extended stud is a cantilever that reintroduces the wobbl
 the design works to avoid. Big errors get corrected at the legs; the feet are
 for fine adjustment only.
 
+**Floor leveling (portable stand — feet only).** This is a knockdown stand
+that gets moved between locations, so floor slope is handled ENTIRELY by the
+adjustable feet, and the **end-frames are built identical (all four legs the
+same length)**. NEVER trim legs to a specific floor's slope — it would be wrong
+at the next location and would force two different end-frames. The current
+install floor drops ~1/2" over the 48" width (~0.44" across the 42.5" foot
+span); leveling it needs only ±0.22" per side if centered, vs ~±0.5–0.75" of
+foot travel — comfortably within range, with no rigidity penalty (a 7/16"
+correction leaves the M12 stud far from any buckling/wobble concern). Re-level
+the feet at each new location; re-check the front-back (25.75") axis too.
+
 ## Levelers
 
 - **M12×1.75 stud, 2" swivel base.** Studs sized for stiffness, not load —

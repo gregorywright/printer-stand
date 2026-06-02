@@ -31,20 +31,21 @@ Items checked are already on hand or already ordered.
 - [ ] **1.5"-wide × 3/16" flat bar** — buy **6 ft**
   - Cut to 5" lengths for plate B (12 plates needed)
 
-**Where to buy:** local steel supplier (search "metal supply" or "steel
-service center"). Walk-in pickup, full-length sticks, often cut-to-length
-for free. **Avoid Home Depot / Metals Depot / eBay** — typically 50–100%
-more expensive on tube.
+**Where to buy:** Pacific Industrial Supply (Seattle — weekday pickup only).
+Sold by the pound; full-length sticks. **Avoid Home Depot / Metals Depot /
+eBay** — typically 50–100% more expensive on tube.
 
-**Estimated cost (local supplier):**
+**Pricing (Pacific Industrial Supply):**
 
-| Stock | Cost range |
-|---|---|
-| Tube ×3 sticks | $180–$300 |
-| Angle ×1 stick | $20–$40 |
-| 3/8" flat bar (6 ft) | $15–$25 |
-| 3/16" flat bar (6 ft) | $8–$15 |
-| **Steel subtotal** | **$220–$380** |
+| Stock | $/lb | $/ft | Buy | Cost |
+|---|---|---|---|---|
+| 1.5×1.5×0.120 tube (2.25 lb/ft) | $2.30 | $5.18 | 60 ft (3×20') | **$311** |
+| 3/4×3/4×1/8 angle (0.58 lb/ft) | ~$2.30¹ | ~$1.35¹ | 20 ft (1×20') | **~$27**¹ |
+| 1.5"×3/8" flat bar (1.92 lb/ft) | $1.75 | $3.36 | 7 ft | **$23** |
+| 1.5"×3/16" flat bar (0.96 lb/ft) | $1.75 | $1.68 | 6 ft | **$10** |
+| **Steel subtotal** | | | | **~$371** |
+
+¹ Angle iron price not yet confirmed — estimated at the same $/lb as tube.
 
 ---
 
@@ -188,18 +189,18 @@ Pick one path:
 
 ## Cost rollup
 
-| Category | Cable-X variant | Z-back variant |
-|---|---|---|
-| Steel stock | $220–$380 | $220–$380 |
-| Welding consumables | ~$15 | ~$15 |
-| Bolts + washers | ~$15 | ~$15 |
-| Levelers + M12 tap | ~$40 | ~$40 |
-| Wood-top mounting hardware | ~$10 | ~$10 |
-| Back-brace anchors (welded at fab) | ~$0–20 | ~$0–20 |
-| Finishing (DIY) | ~$50 | ~$50 |
-| Floor pads | $0 (rubber-base feet) | $0 |
-| **Base build (open back)** | **~$350–$530** | **~$345–$505** |
-| Cable X chain (*deferred* add-on, only if needed) | +$80–$120 | n/a |
+| Category | Cost |
+|---|---|
+| Steel stock (Pacific Industrial) | ~$371 |
+| Welding consumables | ~$15 |
+| Bolts + washers | ~$15 |
+| Levelers + M12 tap | ~$40 |
+| Wood-top mounting hardware | ~$10 |
+| Back-brace anchors (welded at fab) | ~$0–20 |
+| Finishing (DIY rattle-can) | ~$50 |
+| Floor pads | $0 (rubber-base feet) |
+| **Base build (open back)** | **~$500** |
+| Cable X chain (*deferred* add-on, only if needed) | +$80–$120 |
 
 If powder-coating instead of rattle-can, add ~$100.
 

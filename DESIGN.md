@@ -294,7 +294,7 @@ Three mechanisms, deliberately decoupled, in order of who does the heavy lifting
 | Adjustment | Mechanism | Range |
 |---|---|---|
 | Build-height error | Cut legs to final length at assembly (trim bottoms) | unlimited (down) |
-| Floor flatness + residual error | Leveler studs at each leg | ~±0.75" around nominal |
+| Floor slope + fine counter-match | Leveler feet (42–72mm range) | ~±0.34" usable with the 1/2" slope centered |
 | Counter-height match (fine) | Shims between steel top and wood underside | ±1/4" |
 
 **Legs are the primary height control, and the most forgiving — a first-time
@@ -304,11 +304,12 @@ final length. Every flange plate sits at or above H_BOTTOM (5"), well above
 the trim zone, so trimming the bottom touches no joint. This means a frame
 that comes out too tall is fixed with the chop saw, not lived with.
 
-The leveler nominal lift is set mid-range (~1") so the feet can take up
-residual error in *both* directions and handle floor flatness. Shims at the
-wood-to-steel interface make the final fine counter-match (±1/4") and let you
-re-tune for seasonal wood movement, a refinish, or a move without touching
-the legs or feet.
+The leveler nominal lift is set to 2.0" (floor → cap underside), chosen to
+center the counter-end/far-end foot pair for the ~1/2" sloped install floor —
+NOT the range middle — so the feet absorb build error both ways (see "Floor
+leveling" below). Shims at the wood-to-steel interface make the final fine
+counter-match (±1/4") and let you re-tune for seasonal wood movement, a
+refinish, or a move without touching the legs or feet.
 
 **Caveat (rigidity):** don't lean on a lot of leveler stud extension to fix a
 short frame — a long extended stud is a cantilever that reintroduces the wobble
@@ -319,12 +320,20 @@ for fine adjustment only.
 that gets moved between locations, so floor slope is handled ENTIRELY by the
 adjustable feet, and the **end-frames are built identical (all four legs the
 same length)**. NEVER trim legs to a specific floor's slope — it would be wrong
-at the next location and would force two different end-frames. The current
-install floor drops ~1/2" over the 48" width (~0.44" across the 42.5" foot
-span); leveling it needs only ±0.22" per side if centered, vs ~±0.5–0.75" of
-foot travel — comfortably within range, with no rigidity penalty (a 7/16"
-correction leaves the M12 stud far from any buckling/wobble concern). Re-level
-the feet at each new location; re-check the front-back (25.75") axis too.
+at the next location and would force two different end-frames.
+
+The measured foot range (floor → cap underside) is **42–72mm (1.65–2.83")**.
+At the initial location the floor slopes down *away from the counter*, so the
+far end's feet must sit ~1/2" higher than the counter end's — a *fixed offset*,
+not a ±split. That offset is the binding constraint: center the near/far foot
+*pair* in the range, which puts the **counter-end foot at ~2.0" nominal** and
+the far-end foot at ~2.5". That leaves **~±0.34" of build-error slack** either
+direction (too tall or too short) while still fitting the 1/2" slope under the
+72mm max. (Centering a single foot at the 2.25" range middle would look
+symmetric but leaves only ~0.09" before the far foot tops out — the wrong
+target, since the slope isn't centered.) No rigidity penalty anywhere in this
+range: even fully extended the M12 rod is far from buckling/wobble. Re-level at
+each new location; re-check the front-back (25.75") axis too.
 
 ## Levelers
 
@@ -342,12 +351,12 @@ the feet at each new location; re-check the front-back (25.75") axis too.
   compression, so that's far more than enough. (Chosen over a bought weld-in
   insert: pre-threaded weld-in feet that fit 1.5" square tube are scarce and
   ~$16 each; a tapped cap reuses a cheap M12 tap.)
-- **Nominal lift ~1.75".** The foot's 0.8" (20mm) rubber base + jam nut + the
-  welded 3/8" foot-cap set the minimum, so sizing the legs to ~1.75" keeps the
-  *exposed* stud short
-  (~0.2") for rigidity while leaving room to extend to ~2.5"+ if the frame
-  comes out short. Coarse height error is taken out at the legs / wood top;
-  the feet handle floor flatness and small residual.
+- **Nominal lift 2.0"** (floor → cap underside; the cap stacks above this).
+  The measured foot adjusts 42–72mm (1.65–2.83"). 2.0" is chosen to center the
+  counter-end/far-end foot *pair* given the 1/2" floor slope (see "Floor
+  leveling" above), giving ~±0.34" of build-error slack either way. Coarse
+  height error is still taken out at the legs (cut long, trim); the feet handle
+  the slope + fine counter-match.
 
 ## Visual / aesthetic decisions
 

@@ -30,9 +30,9 @@ unless explicitly renegotiated. Soft design choices live in `DESIGN.md`.
 - **Counter-flush height.** The top must end up *exactly* level with the
   adjacent kitchen counter so equipment can straddle the seam. Primary
   height control is cutting the legs to final length at assembly (trim the
-  bottoms after dry-fit). The swivel feet (set mid-range) absorb residual
-  build error and floor flatness; shims at the wood-to-steel interface make
-  the final fine match (±1/4").
+  bottoms after dry-fit). The swivel feet (counter-end set to ~2.0" nominal,
+  centering the 1/2" floor slope) absorb residual build error and the slope;
+  shims at the wood-to-steel interface make the final fine match (±1/4").
 - **Wood movement.** The solid top moves cross-grain — across the 25.75" (Y)
   depth, since grain runs the 48" length. Seattle's mild, humid, year-round-
   stable indoor climate gives a SMALL seasonal swing (~ΔMC 3–4 points):
@@ -153,7 +153,7 @@ keeps the joint geometry forgiving to bolt-length variation.
 
 | Member | Qty | Length (approx.) | Notes |
 |---|---|---|---|
-| Legs | 4 | ~34.06" nominal | 1.5"×1.5"×0.120" tube; cut long, trim bottom to fit |
+| Legs | 4 | ~33.44" nominal | 1.5"×1.5"×0.120" tube; cut long, trim bottom to fit |
 | End-frame horizontals (3 per end frame × 2 end frames) | 6 | 18.75" | 1.5"×1.5"×0.120" tube |
 | End-frame diagonals (one per end frame, lower bay) | 2 | ~24.4" | 1.5"×1.5"×0.120" tube, true 45°, single miter each end |
 | Long stretchers (tube length, end-to-end) | 6 | 39.875" | 1.5"×1.5"×0.120" tube |
@@ -177,11 +177,13 @@ keeps the joint geometry forgiving to bolt-length variation.
 - Built in: garage
 - Used in: room adjacent to kitchen, low-ceiling (with overhead pipes)
 - Floor: tile, 12"×12" tiles
-- **Floor is out of level** — drops ~1/2" over the stand's 48" width
-  (≈0.44", ~7/16", across the 42.5" left-right foot span). Handled
-  ENTIRELY by the adjustable leveler feet (need only ±0.22" if centered,
-  well within travel). Do NOT trim legs to a floor's slope: this is a
-  knockdown stand that moves between locations and the end-frames are built
-  IDENTICAL — the feet re-level at each new floor. Re-check the front-back
-  (25.75") axis on site too.
+- **Floor is out of level** — drops ~1/2" over the stand's 48" width, sloping
+  down *away from the counter* (≈0.44" across the 42.5" foot span). Handled
+  ENTIRELY by the adjustable feet (measured range 42–72mm). The far-end feet
+  sit ~1/2" higher than the counter-end feet; the leveler nominal is set to
+  **2.0"** (counter-end foot) to center that pair and keep ~±0.34" of
+  build-error slack — see `DESIGN.md` "Height adjustment". Do NOT trim legs to
+  a floor's slope: this is a knockdown stand that moves between locations and
+  the end-frames are built IDENTICAL. Re-check the front-back (25.75") axis on
+  site too.
 - Adjacent surface: kitchen counter — top must match its height exactly

@@ -107,7 +107,9 @@ design decision:
 - Flange-plate joints chosen over tube-in-tube sleeves — easier for a
   beginner welder, more forgiving on cut accuracy.
 - Levelers chosen over casters — rigidity priority. Caster conversion path
-  is preserved (chop legs, weld plates). Nominal lift set mid-range (~1") so
+  is preserved (chop legs, weld plates). Leveler nominal set to 2.0" (floor
+  → cap underside), chosen to center the counter-end/far-end foot pair for
+  the ~1/2" sloped install floor — NOT the range middle — so
   the feet absorb build error both ways. **Primary height control is cutting
   the legs to final length at assembly** (cut long, trim the bottoms after
   dry-fit — all flange plates sit at/above H_BOTTOM = 5", so trimming touches

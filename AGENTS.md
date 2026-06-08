@@ -175,6 +175,8 @@ no longer applies before suggesting an alternative.
 | `DESIGN.md` | Design rationale and decisions |
 | `TOOLS.md` | Tools and PPE — what the owner has, what to acquire |
 | `SHOPPING.md` | Parts and consumables — steel stock, hardware, paint, broken out by variant |
+| `FABRICATION.md` | Build notes — end-frame jig, weld sequence, distortion control, build order |
+| `EXTRUSIONS.md` | Pros/cons catalog: T-slot aluminum extrusion alternative (exploration, not the current design) |
 | `AGENTS.md` | This file |
 
 ## Out-of-scope for this project

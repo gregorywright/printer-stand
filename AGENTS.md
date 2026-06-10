@@ -177,6 +177,7 @@ no longer applies before suggesting an alternative.
 | `SHOPPING.md` | Parts and consumables — steel stock, hardware, paint, broken out by variant |
 | `FABRICATION.md` | Build notes — end-frame jig, weld sequence, distortion control, build order |
 | `EXTRUSIONS.md` | Pros/cons catalog: T-slot aluminum extrusion alternative (exploration, not the current design) |
+| `PRACTICE.md` | Scrap inventory, cut plan, and welding/tapping/drilling exercises (ordered easy → hard) |
 | `AGENTS.md` | This file |
 
 ## Out-of-scope for this project

@@ -120,6 +120,17 @@ design decision:
   steel footprint (FRAME_LENGTH, FRAME_DEPTH).
 - Wood mounted via slotted holes + threaded inserts + fender washers —
   allows seasonal movement, allows clean removal.
+- **Dual-duty "sit-at-it as a bench" idea is live but not committed.** The
+  stand may double as an electronics workbench (owner sits on a high stool).
+  The 37" height already suits perched bench work; what blocks legs is the
+  **front-middle stretcher at 23.75"**, not the height. Preferred fix is an
+  **off-center knee hole at the seam/counter end** (drop/shorten the front
+  middle stretcher there, keep full shelving at the printer end) — asymmetric,
+  which trades away the identical-end-frames simplicity. The stand butts the
+  kitchen counter to form one continuous surface; match the counter's ~1/8"
+  edge roundover and keep front edges co-planar. See `DESIGN.md` → "Using the
+  stand as a desk." A **buy-now electric standing desk** (FlexiSpot E7) is the
+  fallback/stopgap — see `STANDING-DESK.md`.
 
 If you propose changing any of these, explain *why* the original reasoning
 no longer applies before suggesting an alternative.
@@ -178,6 +189,7 @@ no longer applies before suggesting an alternative.
 | `FABRICATION.md` | Build notes — end-frame jig, weld sequence, distortion control, build order |
 | `EXTRUSIONS.md` | Pros/cons catalog: T-slot aluminum extrusion alternative (exploration, not the current design) |
 | `PRACTICE.md` | Scrap inventory, cut plan, and welding/tapping/drilling exercises (ordered easy → hard) |
+| `STANDING-DESK.md` | Buy-now alternative: electric standing desk (FlexiSpot E7), DIY-top mounting + wood movement, and how the top affects stability |
 | `AGENTS.md` | This file |
 
 ## Out-of-scope for this project

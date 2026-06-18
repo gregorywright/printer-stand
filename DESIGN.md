@@ -404,6 +404,95 @@ seating on the back leg) and runs down to the front. This was a
 first-time-welder simplification: it trades a hard-to-cut compound corner
 joint for two easy, identical 45° miters with flat fillet welds.
 
+## Using the stand as a desk (sit-at variant — under consideration)
+
+The owner is weighing whether to adapt the stand so it can be **sat at from a
+high stool**, doubling as an electronics workbench. This is *not yet committed*
+— it's captured here so the trade-offs are recorded. The buy-now alternative
+(an electric standing desk) lives in `STANDING-DESK.md`.
+
+### Why the height already works
+
+Nothing changes about height. The 37" counter-match (a hard constraint) is
+*also* bar/counter height — the correct surface height for perched bench work
+on a high stool or drafting chair. The constraint that forces 37" works *for*
+this idea rather than against it.
+
+### What actually blocks legs is one member, not the height
+
+- Top of wood 37" → underside of the top steel frame ~34.3" (top stretcher
+  hangs from 35.8125"): ample thigh clearance.
+- Bottom shelf at 5" is a toe-kick — never fouls feet.
+- **The middle stretchers at 23.75" are the problem.** The *front* middle
+  stretcher sits at the front face at knee/shin height; pull up on a stool and
+  knees foul it. The middle-shelf plywood also walls off the center.
+
+So "open it up to sit at" means: **get the front-middle stretcher out of the
+knee zone and remove the middle shelf as a full-width element.** The end-frame
+diagonals live in the lower bay *at each end* and do not intrude on a center
+knee hole — knees go *between* the two end frames.
+
+### The counter-seam changes the calculus
+
+The stand butts against the existing kitchen counter to make **one continuous
+work surface** (printer/equipment parked at the far end, operator seated at the
+seam where the counter continues, using the counter's free space too). This
+dissolves the usual objections to a one-piece dual-duty bench:
+
+- **"Cramped" goes away** — usable surface is the stand *plus* the adjacent
+  counter, not just the 48" top.
+- **"Vibration next to fine work" goes away** — owner won't print and solder at
+  the same time, and the bedslinger only matters while running.
+
+Seam requirements (same rules as the wood-top section above):
+
+- **Height match to ~1/16"**, not just visually level — handled by the existing
+  trim-legs / feet / shims stack.
+- **Edge profile match.** The counter is hard faux-marble with a **~1/8"
+  roundover**; give the oak top a **matching ~1/8" roundover** so nothing
+  catches crossing the seam. Don't leave a dead-square edge against the rounded
+  counter edge.
+- **Front edges co-planar** (or the stand set slightly back, never proud) so
+  there's no shin-barking corner along the run. The 2" front overhang is the
+  tuning knob.
+- **Deliberate hairline gap**, not a forced zero — leave a sliver for seasonal
+  wood movement (the top grows toward the *back*, away from the seam — good) and
+  for re-leveling on a move.
+
+### Off-center knee hole (the preferred layout)
+
+Because the operator mostly sits **at the seam end** (where the counter
+continues and the gear lives), the knee hole only needs to be at **one end** of
+the stand:
+
+- **Open knee hole at the seam/counter end** — drop or shorten the *front*
+  middle stretcher there so knees clear; the bottom toe-kick stretcher and the
+  top stretcher stay.
+- **Full shelving (incl. middle shelf) retained at the printer/far end** —
+  maximizes storage where it isn't in the way.
+
+This **asymmetric** layout matches how the run is actually used and keeps more
+storage than a fully open center. Trade-off to flag: it **breaks the "identical
+end frames / identical full-length stretchers" simplicity** that the rest of the
+design prizes for a first welding project — the front-middle stretcher becomes a
+partial member or a pair of stubs, which is more cuts and fitting. Decide this
+from the seating position, not the drawing.
+
+Alternative considered: **fully open center** (drop both middle stretchers
+entirely; store in freestanding cabinets or end-cantilevered partial shelves at
+the two ends). Cleaner and lets a stool roll anywhere along the front, but gives
+up the most middle-shelf storage and leans harder on the back brace — if going
+this way, plan to actually install the cable-X rather than leave it deferred
+(the structure is ~50:1 overbuilt against racking, so it won't wobble, but the
+middle stretchers were contributing some tie-in).
+
+### Depth note
+
+25.75" is a touch shallow once a scope + NanoVNA + TinySA + PSU line up across
+the back. If redesigning anyway, **28–30" depth** adds a back instrument row +
+front elbow room — but matching the counter's depth for a clean flush seam may
+trump that. Not yet decided.
+
 ## Future modifications anticipated
 
 - **Casters in the future.** If owner repurposes the stand later: chop ~3"

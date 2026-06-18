@@ -144,6 +144,50 @@ Implications for the top choice:
   the feet isn't tied down — don't perch full weight on a far unsupported
   corner (2" all-around is fine).
 
+## Top upgrade path (buy cheap, upgrade later)
+
+The top is **fully decoupled from the frame** — just screwed to the mounting
+plates + crossbar. Swapping it later is a ~20-min job: flip the desk, back out
+the ~10 screws, lift the old top, drill pilots in the new one, screw it down.
+The frame doesn't care what's on top. So **buy the cheapest stock top now**;
+upgrade only if the wobble test (below) or the look calls for it. Zero penalty
+for deferring.
+
+**Sequence: do the wobble test at 37" FIRST.** When the cheap-top desk arrives,
+butt it to the counter and push the top sideways at counter height — watch it
+rack. 37" is the E7's *stiffest* regime and the counter braces the fore-aft
+axis, so it'll very likely be rock-solid as-is. If so, a heavier top becomes a
+**look/seam-matching** decision, not a stability fix — don't spend the effort
+chasing stability you already have.
+
+**Preferred upgrade top: two 3/4" plywood sheets laminated (≈1.5" total) +
+edge-banding.** Better than the stock top for this use:
+
+- **Stiffer + heavier → a *better* diaphragm**, so it raises racking stiffness
+  rather than lowering it (see the stability section above).
+- **Plywood doesn't move seasonally**, so it screws straight down through the
+  frame's rigid round holes — **no slotting, no cleats, no figure-8 clips.** The
+  whole wood-movement headache (options 2/3 above) simply doesn't apply; that
+  only bites with *solid lumber*.
+- **Edge-banding** (iron-on veneer or a glued hardwood strip) finishes the
+  laminated edge and carries the **matching ~1/8" front-edge roundover** for the
+  counter seam. A ~1.5" edge also reads more like furniture and gets closer to
+  the counter's thickness.
+
+Watch-outs for the laminated top:
+
+- **Glue the full face and clamp the whole field** (roll glue across the entire
+  mating face; weight/clamp everywhere). Edge-only glue buzzes and delaminates.
+- **Screw length vs. thickness.** Stock screws are sized for a ~1" top; into
+  1.5" of ply they bite fine (more bite = better). If a hardwood layer is ever
+  added, confirm screws can't punch through the surface.
+- **Weight ≈ 55–70 lb** for 48"×30"×1.5" ply — far under the 355 lb rating and
+  the lift motors won't notice, but get a hand when flipping the desk to swap.
+- **A single 3/4" sheet may be enough.** Screwed solid across both feet it's
+  already a rigid diaphragm at 48"×30" and stiffer than stock. The double
+  lamination is mostly look/heft/seam-thickness — if the single sheet feels
+  solid, stop there.
+
 ## Bottom line / recommendation
 
 - **Buy the standard FlexiSpot E7, 48"×30"** (or 48"×24" to match the stand's
